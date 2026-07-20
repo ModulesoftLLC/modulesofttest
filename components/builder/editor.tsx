@@ -144,6 +144,7 @@ export function Editor({ template }: { template: TemplateSeed | null }) {
         onViewportChange={setViewport}
         previewMode={previewMode}
         onTogglePreview={togglePreview}
+        sections={sections}
       />
 
       <div className="flex min-h-0 flex-1">

@@ -1,6 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import {
+  Code2,
   Eye,
   EyeOff,
   Monitor,
@@ -10,7 +12,14 @@ import {
   Undo2,
 } from "lucide-react";
 
-import type { Viewport } from "@/types";
+import type { BuilderSection, Viewport } from "@/types";
+import {
+  CODE_HANDOFF_KEY,
+  exportSectionsToHtml,
+  exportedBaseCss,
+  exportedBaseJs,
+  type CodeHandoff,
+} from "@/lib/export-html";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/logo";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +47,7 @@ interface TopBarProps {
   onViewportChange: (viewport: Viewport) => void;
   previewMode: boolean;
   onTogglePreview: () => void;
+  sections: BuilderSection[];
 }
 
 const viewportOptions: {
@@ -57,7 +67,25 @@ export function TopBar({
   onViewportChange,
   previewMode,
   onTogglePreview,
+  sections,
 }: TopBarProps) {
+  const router = useRouter();
+
+  const openInCodeEditor = () => {
+    const handoff: CodeHandoff = {
+      siteName,
+      html: exportSectionsToHtml(siteName, sections),
+      css: exportedBaseCss,
+      js: exportedBaseJs,
+    };
+    try {
+      localStorage.setItem(CODE_HANDOFF_KEY, JSON.stringify(handoff));
+    } catch {
+      // хадгалж чадаагүй ч засварлагч анхдагч кодтойгоо нээгдэнэ
+    }
+    router.push("/editor?from=builder");
+  };
+
   return (
     <TooltipProvider>
       <header className="glass z-30 flex h-14 shrink-0 items-center justify-between gap-4 border-b border-border px-4">
@@ -129,6 +157,23 @@ export function TopBar({
           </Tooltip>
 
           <div className="mx-1 h-5 w-px bg-border" />
+
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={openInCodeEditor}
+                  aria-label="Код засварлагчид нээх"
+                />
+              }
+            >
+              <Code2 />
+              Код
+            </TooltipTrigger>
+            <TooltipContent>Хуудсаа HTML болгож код засварлагчид нээх</TooltipContent>
+          </Tooltip>
 
           <Button
             variant={previewMode ? "secondary" : "ghost"}

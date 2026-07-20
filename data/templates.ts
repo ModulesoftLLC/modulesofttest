@@ -131,7 +131,7 @@ export const templates: Template[] = [
       "Мэдээ, зарлалын хэсэг",
     ],
     palette: { from: "#eab308", to: "#f59e0b", surface: "#141310" },
-    image: u("photo-1523050854058-8df90110c9f1"),
+    image: u("photo-1541339907198-e08756dedf3f"),
     gallery: [
       u("photo-1509062522246-3755977927d7", 800),
       u("photo-1427504494785-3a9ca7044f45", 800),

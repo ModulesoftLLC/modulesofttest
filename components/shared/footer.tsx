@@ -8,6 +8,7 @@ const columns = [
     links: [
       { label: "Загварууд", href: "/templates" },
       { label: "Вэбсайт бүтээгч", href: "/builder" },
+      { label: "Код засварлагч", href: "/editor" },
       { label: "Үнэ", href: "/pricing" },
       { label: "Төсөл эхлүүлэх", href: "/order" },
     ],
