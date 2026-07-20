@@ -42,9 +42,9 @@ const sectionIcons: Record<
 };
 
 const groups: { label: string; types: SectionType[] }[] = [
-  { label: "Layout", types: ["navbar", "hero", "footer"] },
-  { label: "Content", types: ["features", "stats", "gallery", "team", "faq"] },
-  { label: "Conversion", types: ["testimonials", "pricing", "cta", "contact"] },
+  { label: "Бүтэц", types: ["navbar", "hero", "footer"] },
+  { label: "Контент", types: ["features", "stats", "gallery", "team", "faq"] },
+  { label: "Хөрвүүлэлт", types: ["testimonials", "pricing", "cta", "contact"] },
 ];
 
 const labelByType = new Map<SectionType, string>(
@@ -76,9 +76,9 @@ export function ComponentsPanel({
     <aside className="flex w-64 shrink-0 flex-col border-r border-border bg-card/50">
       <div className="space-y-2.5 border-b border-border p-3">
         <div>
-          <p className="text-sm font-semibold">Blocks</p>
+          <p className="text-sm font-semibold">Блокууд</p>
           <p className="mt-0.5 text-xs text-muted-foreground">
-            Click a block to add it to the page.
+            Блок дээр дарж хуудсанд нэмнэ үү.
           </p>
         </div>
         <div className="relative">
@@ -86,7 +86,7 @@ export function ComponentsPanel({
           <Input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search blocks…"
+            placeholder="Блок хайх…"
             className="h-8 pl-8 text-sm"
           />
         </div>
@@ -125,7 +125,7 @@ export function ComponentsPanel({
 
         {filteredGroups.length === 0 && (
           <p className="px-1 py-8 text-center text-xs text-muted-foreground">
-            No blocks match “{query.trim()}”.
+            “{query.trim()}” гэсэн хайлтад тохирох блок олдсонгүй.
           </p>
         )}
       </div>

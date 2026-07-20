@@ -9,20 +9,14 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Container } from "@/components/shared/container";
-import { SectionHeading } from "@/components/shared/section-heading";
-import {
-  AmbientGlow,
-  FadeIn,
-  Stagger,
-  StaggerItem,
-} from "@/components/shared/motion";
+import { FadeIn, Stagger, StaggerItem } from "@/components/shared/motion";
 import { stats, team } from "@/data/marketing";
 import { initials } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "About — MODULESOFT",
+  title: "Бидний тухай — MODULESOFT",
   description:
-    "We’re a small studio with a big thesis: every business deserves a website that performs like a product. Meet the team behind MODULESOFT.",
+    "Бизнес бүр бүтээгдэхүүн шиг ажилладаг вэбсайттай байх ёстой гэсэн том итгэл үнэмшилтэй жижиг студи. MODULESOFT-ын ард буй багтай танилцаарай.",
 };
 
 const values: {
@@ -32,27 +26,27 @@ const values: {
 }[] = [
   {
     icon: Sparkles,
-    title: "Craft over volume",
+    title: "Тоо биш, чанар",
     description:
-      "We’d rather ship one template that converts than ten that decorate. Every layout in the marketplace earns its place against real traffic.",
+      "Гоёл болж өлгөгддөг арван загвараас худалдан авалт авчирдаг ганц загварыг бид илүүд үздэг. Манай сангийн хуудас бүр бодит хандалтын өмнө өөрийн байр сууриа хамгаалдаг.",
   },
   {
     icon: Gauge,
-    title: "Performance is a promise",
+    title: "Хурд бол амлалт",
     description:
-      "Speed budgets are written at the top of every brief. A beautiful site that loads in four seconds is a beautiful site nobody sees.",
+      "Даалгавар бүрийн эхний мөрөнд хурдны төсөв бичигддэг. Дөрвөн секундэд ачаалагддаг үзэсгэлэнтэй сайтыг хэн ч харж амждаггүй.",
   },
   {
     icon: Compass,
-    title: "Design as an argument",
+    title: "Дизайн бол баримтлал",
     description:
-      "Pages are sequenced like a persuasive case — promise, proof, product, ask. Polish comes after the argument is right.",
+      "Хуудсуудыг үнэмшүүлэх өгүүлэмж шиг дараалалд оруулдаг — амлалт, нотолгоо, бүтээгдэхүүн, урилга. Гоо сайхан нь баримтлал зөв болсны дараа ирдэг.",
   },
   {
     icon: HeartHandshake,
-    title: "Clients, not tickets",
+    title: "Тасалбар биш, харилцагч",
     description:
-      "Every engagement gets a named team from kickoff to launch. You’ll never explain your project twice to a stranger.",
+      "Төсөл бүрд эхлэлээс нээлт хүртэл тогтсон нэг баг ажилладаг. Та төслөө танихгүй хүнд дахин тайлбарлах шаардлага хэзээ ч гарахгүй.",
   },
 ];
 
@@ -60,72 +54,83 @@ export default function AboutPage() {
   return (
     <>
       {/* Story / mission */}
-      <section className="relative overflow-hidden pt-40 pb-24">
-        <AmbientGlow />
+      <section className="relative pt-32 pb-16">
         <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <FadeIn>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                About MODULESOFT
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <h1 className="text-gradient mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
-                Websites, treated like products
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.16}>
-              <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
-                MODULESOFT started as a design studio with an inconvenient
-                observation: most of the web is rebuilt from scratch, badly,
-                over and over. So we compressed fifteen years of client work
-                into a marketplace of proven templates, a builder that feels
-                like design software, and a studio that steps in when the
-                stakes are high. Today more than a thousand businesses run on
-                sites we designed — and every launch teaches the next one.
-              </p>
-            </FadeIn>
-          </div>
+          <FadeIn>
+            <div className="liquid-glass-strong mx-auto max-w-3xl rounded-[2.5rem] px-8 py-14 text-center sm:px-14">
+              <div className="relative z-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                  MODULESOFT-ын тухай
+                </p>
+                <h1 className="mt-4 text-balance text-4xl font-medium tracking-[-0.05em] text-white sm:text-6xl">
+                  Вэбсайтыг <em className="text-white/80">бүтээгдэхүүн</em> шиг
+                </h1>
+                <p className="mt-6 text-pretty text-lg leading-relaxed text-white/60">
+                  MODULESOFT нэгэн эвгүй ажиглалтаас төрсөн: вэбийн ихэнх хэсэг
+                  дахин дахин, тэр болгондоо муугаар, тэгээс бүтээгддэг. Тиймээс
+                  бид арван таван жилийн харилцагчийн туршлагаа батлагдсан
+                  загваруудын сан, дизайны программ шиг мэдрэгддэг бүтээгч,
+                  чухал мөчид туслах студи болгон шахаж гаргасан. Өнөөдөр мянга
+                  гаруй бизнес бидний бүтээсэн сайтууд дээр ажиллаж байгаа
+                  бөгөөд нээлт бүр дараагийнхаа сургамж болдог.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </section>
 
       {/* Stats band */}
-      <section className="border-y border-border bg-secondary/20 py-14">
+      <section className="pb-16">
         <Container>
-          <Stagger className="grid grid-cols-2 gap-10 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <StaggerItem key={stat.label} className="text-center">
-                <p className="text-gradient text-4xl font-semibold tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {stat.label}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <FadeIn>
+            <div className="liquid-glass rounded-[2.5rem] px-8 py-10">
+              <Stagger className="relative z-10 grid grid-cols-2 gap-10 lg:grid-cols-4">
+                {stats.map((stat) => (
+                  <StaggerItem key={stat.label} className="text-center">
+                    <p className="text-4xl font-medium tracking-tight text-white">
+                      {stat.value}
+                    </p>
+                    <p className="mt-2 text-sm text-white/60">{stat.label}</p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </div>
+          </FadeIn>
         </Container>
       </section>
 
       {/* Values */}
-      <section className="py-24">
+      <section className="py-16">
         <Container>
-          <SectionHeading
-            eyebrow="What we believe"
-            title="The values behind every launch"
-            description="Four principles that decide what ships, what waits, and what never makes it past the design review."
-          />
+          <FadeIn className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+              БИДНИЙ ИТГЭЛ ҮНЭМШИЛ
+            </p>
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+              Нээлт бүрийн ард буй{" "}
+              <em className="text-white/80">үнэт зүйлс</em>
+            </h2>
+            <p className="mt-4 text-pretty text-base leading-relaxed text-white/60">
+              Юу нийтлэгдэх, юу хүлээх, юу дизайны хяналтыг хэзээ ч
+              давахгүйг шийддэг дөрвөн зарчим.
+            </p>
+          </FadeIn>
           <Stagger className="grid gap-6 sm:grid-cols-2">
             {values.map((value) => (
               <StaggerItem key={value.title}>
-                <div className="card-hover h-full rounded-xl border border-border bg-card p-7">
-                  <div className="flex size-11 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 shadow-lg shadow-indigo-500/25">
-                    <value.icon className="size-5 text-white" />
+                <div className="liquid-glass h-full rounded-3xl p-7 transition-transform hover:scale-105">
+                  <div className="relative z-10">
+                    <span className="flex size-8 items-center justify-center rounded-full bg-white/10">
+                      <value.icon className="size-4 text-white" />
+                    </span>
+                    <h3 className="mt-5 text-lg font-medium text-white">
+                      {value.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/60">
+                      {value.description}
+                    </p>
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold">{value.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {value.description}
-                  </p>
                 </div>
               </StaggerItem>
             ))}
@@ -134,27 +139,38 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="border-t border-border py-24">
+      <section className="py-16">
         <Container>
-          <SectionHeading
-            eyebrow="The team"
-            title="Small team, senior hands"
-            description="No account managers, no hand-offs into the void — the people below are the people on your project."
-          />
+          <FadeIn className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+              БАГ ХАМТ ОЛОН
+            </p>
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+              Жижиг баг, <em className="text-white/80">туршлагатай</em> гар
+            </h2>
+            <p className="mt-4 text-pretty text-base leading-relaxed text-white/60">
+              Данс хөтлөгч ч үгүй, хоосон орон зай руу дамжуулах ажил ч үгүй
+              — доорх хүмүүс яг таны төсөл дээр ажиллана.
+            </p>
+          </FadeIn>
           <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
               <StaggerItem key={member.id}>
-                <div className="card-hover h-full rounded-xl border border-border bg-card p-7 text-center">
-                  <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-fuchsia-500 text-lg font-semibold text-white shadow-lg shadow-indigo-500/25">
-                    {initials(member.name)}
-                  </span>
-                  <h3 className="mt-5 font-semibold">{member.name}</h3>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-wide text-indigo-400">
-                    {member.role}
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {member.bio}
-                  </p>
+                <div className="liquid-glass h-full rounded-3xl p-7 text-center transition-transform hover:scale-105">
+                  <div className="relative z-10">
+                    <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-white/10 text-lg font-medium text-white">
+                      {initials(member.name)}
+                    </span>
+                    <h3 className="mt-5 font-medium text-white">
+                      {member.name}
+                    </h3>
+                    <p className="mt-1 text-xs font-medium uppercase tracking-wide text-white/50">
+                      {member.role}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-white/60">
+                      {member.bio}
+                    </p>
+                  </div>
                 </div>
               </StaggerItem>
             ))}
@@ -163,28 +179,27 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24">
+      <section className="py-16 pb-24">
         <Container>
           <FadeIn>
-            <div className="glow-primary relative overflow-hidden rounded-3xl border border-indigo-400/20 bg-gradient-to-br from-indigo-950/60 via-card to-card px-8 py-16 text-center sm:px-16">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/30 blur-[100px]"
-              />
-              <h2 className="text-gradient relative text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                Let’s build something worth launching
-              </h2>
-              <p className="relative mx-auto mt-4 max-w-lg text-pretty text-muted-foreground">
-                Whether you start from a template or a blank brief, the same
-                team and the same standards are behind it.
-              </p>
-              <div className="relative mt-9 flex justify-center">
-                <Link
-                  href="/order"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-6 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition-colors hover:from-indigo-400 hover:to-violet-400"
-                >
-                  Start a project <ArrowRight className="size-4" />
-                </Link>
+            <div className="liquid-glass-strong rounded-[2.5rem] px-8 py-16 text-center sm:px-16">
+              <div className="relative z-10">
+                <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+                  Нээхэд <em className="text-white/80">үнэ цэнтэй</em> зүйлийг
+                  хамтдаа бүтээе
+                </h2>
+                <p className="mx-auto mt-4 max-w-lg text-pretty text-white/60">
+                  Загвараас эхэлсэн ч, хоосон даалгавраас эхэлсэн ч — ард нь
+                  адилхан баг, адилхан стандарт байх болно.
+                </p>
+                <div className="mt-9 flex justify-center">
+                  <Link
+                    href="/order"
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-medium text-black transition-transform hover:scale-105 active:scale-95"
+                  >
+                    Төсөл эхлүүлэх <ArrowRight className="size-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </FadeIn>

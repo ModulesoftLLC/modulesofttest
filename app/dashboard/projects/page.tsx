@@ -36,11 +36,11 @@ import type { ProjectStatus } from "@/types";
 type FilterValue = "all" | ProjectStatus;
 
 const filters: { value: FilterValue; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "in-progress", label: "In progress" },
-  { value: "in-review", label: "In review" },
-  { value: "completed", label: "Completed" },
-  { value: "on-hold", label: "On hold" },
+  { value: "all", label: "Бүгд" },
+  { value: "in-progress", label: "Хийгдэж буй" },
+  { value: "in-review", label: "Хянагдаж буй" },
+  { value: "completed", label: "Дууссан" },
+  { value: "on-hold", label: "Түр зогссон" },
 ];
 
 export default function ProjectsPage() {
@@ -55,9 +55,9 @@ export default function ProjectsPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Projects</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Төслүүд</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Every site your team is building, from first draft to launch.
+            Танай багийн бүтээж буй бүх сайт — анхны ноороноос нээлт хүртэл.
           </p>
         </div>
         <Link
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
           )}
         >
           <Plus className="size-4" />
-          New project
+          Шинэ төсөл
         </Link>
       </div>
 
@@ -93,18 +93,18 @@ export default function ProjectsPage() {
             </span>
             <div>
               <p className="font-medium">
-                No {filters.find((f) => f.value === filter)?.label.toLowerCase()}{" "}
-                projects
+                &ldquo;{filters.find((f) => f.value === filter)?.label}&rdquo;{" "}
+                ангилалд төсөл алга
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Nothing here yet — try another filter or start something new.
+                Одоогоор энд юу ч алга — өөр шүүлтүүр сонгох эсвэл шинэ төсөл эхлүүлээрэй.
               </p>
             </div>
             <Link
               href="/order"
               className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
-              Start a project
+              Төсөл эхлүүлэх
             </Link>
           </CardContent>
         </Card>
@@ -155,7 +155,7 @@ export default function ProjectsPage() {
 
                 <div>
                   <div className="mb-1.5 flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">Progress</span>
+                    <span className="text-muted-foreground">Гүйцэтгэл</span>
                     <span className="tabular-nums">{project.progress}%</span>
                   </div>
                   <Progress
@@ -165,8 +165,8 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>Created {formatDate(project.createdAt)}</span>
-                  <span>Due {formatDate(project.dueDate)}</span>
+                  <span>Эхэлсэн: {formatDate(project.createdAt)}</span>
+                  <span>Дуусах: {formatDate(project.dueDate)}</span>
                 </div>
               </CardContent>
 
@@ -179,7 +179,7 @@ export default function ProjectsPage() {
                   )}
                 >
                   <PenTool className="size-3.5" />
-                  Open in builder
+                  Бүтээгчээр нээх
                 </Link>
                 <DropdownMenu>
                   <DropdownMenuTrigger
@@ -187,7 +187,7 @@ export default function ProjectsPage() {
                       <Button
                         variant="ghost"
                         size="icon-sm"
-                        aria-label={`Actions for ${project.name}`}
+                        aria-label={`${project.name} төслийн үйлдлүүд`}
                       />
                     }
                   >
@@ -196,16 +196,16 @@ export default function ProjectsPage() {
                   <DropdownMenuContent align="end" className="w-44">
                     <DropdownMenuItem disabled={project.domain === null}>
                       <ExternalLink className="size-4" />
-                      View site
+                      Сайт үзэх
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <Copy className="size-4" />
-                      Duplicate
+                      Хувилах
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
                       <Archive className="size-4" />
-                      Archive
+                      Архивлах
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

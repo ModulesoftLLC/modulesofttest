@@ -10,6 +10,35 @@ function tint(color: string, percent: number): string {
   return `color-mix(in srgb, ${color} ${percent}%, transparent)`;
 }
 
+/**
+ * True when the image slot holds a real picture (user upload or URL)
+ * rather than a CSS gradient preset string.
+ */
+export function isImageValue(value: string): boolean {
+  return value.startsWith("data:") || value.startsWith("http");
+}
+
+/** Renders the image slot as a real <img> or a gradient fill. */
+function ImageFill({ image, alt = "" }: { image: string; alt?: string }) {
+  if (isImageValue(image)) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={image}
+        alt={alt}
+        className="absolute inset-0 size-full object-cover"
+      />
+    );
+  }
+  return (
+    <span
+      aria-hidden
+      className="absolute inset-0"
+      style={{ background: image }}
+    />
+  );
+}
+
 function autoGrid(min: number, gap = "1.5rem"): CSSProperties {
   return {
     display: "grid",
@@ -45,6 +74,8 @@ export function SectionRenderer({ section }: { section: BuilderSection }) {
   const { content, style } = section;
   const accent = style.accentColor;
   const centered = style.align === "center";
+  const heroImageBackground =
+    section.type === "hero" && isImageValue(content.image);
 
   const sectionStyle: CSSProperties = {
     backgroundColor: style.backgroundColor,
@@ -56,7 +87,10 @@ export function SectionRenderer({ section }: { section: BuilderSection }) {
     borderRadius: style.rounded ? 24 : undefined,
   };
 
-  const muted: CSSProperties = { color: style.textColor, opacity: 0.65 };
+  const muted: CSSProperties = {
+    color: heroImageBackground ? "#fafafa" : style.textColor,
+    opacity: heroImageBackground ? 0.85 : 0.65,
+  };
   const faintBorder = tint(style.textColor, 12);
   const stack = cn("flex flex-col gap-4", centered ? "items-center" : "items-start");
   const eyebrow = (
@@ -180,19 +214,34 @@ export function SectionRenderer({ section }: { section: BuilderSection }) {
             <h3 className="text-2xl font-bold tracking-tight">{content.heading}</h3>
           </div>
           <div style={autoGrid(180, "1rem")}>
-            {content.items.slice(0, 3).map((item, index) => (
-              <div
-                key={index}
-                className="relative aspect-[4/3] overflow-hidden rounded-xl"
-                style={{ background: content.image }}
-              >
-                {item.title && (
-                  <span className="absolute bottom-2.5 left-3 rounded-md bg-black/40 px-2 py-0.5 text-[11px] font-medium text-white">
-                    {item.title}
-                  </span>
-                )}
-              </div>
-            ))}
+            {content.items.slice(0, 3).map((item, index) => {
+              const fallback = `linear-gradient(135deg, ${accent}, ${tint(accent, 35)})`;
+              return (
+                <div
+                  key={index}
+                  className="relative aspect-[4/3] overflow-hidden rounded-xl"
+                >
+                  {index === 0 ? (
+                    <ImageFill image={content.image} alt={item.title} />
+                  ) : (
+                    <span
+                      aria-hidden
+                      className="absolute inset-0"
+                      style={{
+                        background: isImageValue(content.image)
+                          ? fallback
+                          : content.image,
+                      }}
+                    />
+                  )}
+                  {item.title && (
+                    <span className="absolute bottom-2.5 left-3 rounded-md bg-black/40 px-2 py-0.5 text-[11px] font-medium text-white">
+                      {item.title}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       );
@@ -262,7 +311,7 @@ export function SectionRenderer({ section }: { section: BuilderSection }) {
                         : { borderColor: faintBorder }
                     }
                   >
-                    Choose plan
+                    Багц сонгох
                   </span>
                 </div>
               );
@@ -348,10 +397,9 @@ export function SectionRenderer({ section }: { section: BuilderSection }) {
                   centered ? "items-center" : "items-start"
                 )}
               >
-                <span
-                  className="mb-2 size-20 rounded-full"
-                  style={{ background: content.image }}
-                />
+                <span className="relative mb-2 size-20 overflow-hidden rounded-full">
+                  <ImageFill image={content.image} alt={item.title} />
+                </span>
                 <p className="text-sm font-semibold">{item.title}</p>
                 <p className="text-xs" style={muted}>
                   {item.description}
@@ -381,20 +429,20 @@ export function SectionRenderer({ section }: { section: BuilderSection }) {
                 className="rounded-lg border px-3 py-2.5 text-sm"
                 style={{ borderColor: faintBorder, ...muted }}
               >
-                Name
+                Нэр
               </div>
               <div
                 className="rounded-lg border px-3 py-2.5 text-sm"
                 style={{ borderColor: faintBorder, ...muted }}
               >
-                Email address
+                Имэйл хаяг
               </div>
             </div>
             <div
               className="h-24 rounded-lg border px-3 py-2.5 text-sm"
               style={{ borderColor: faintBorder, ...muted }}
             >
-              Tell us about your project…
+              Төслийнхөө талаар бидэнд хэлээрэй…
             </div>
             <div className={centered ? "text-center" : "text-left"}>
               <AccentButton label={content.buttonText} accent={accent} />
@@ -443,8 +491,31 @@ export function SectionRenderer({ section }: { section: BuilderSection }) {
   }
 
   return (
-    <section style={sectionStyle}>
-      <div className="mx-auto w-full max-w-5xl px-8">{inner}</div>
+    <section
+      style={sectionStyle}
+      className={cn(heroImageBackground && "relative overflow-hidden")}
+    >
+      {heroImageBackground && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={content.image}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 size-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" aria-hidden />
+        </>
+      )}
+      <div
+        className={cn(
+          "mx-auto w-full max-w-5xl px-8",
+          heroImageBackground && "relative z-10"
+        )}
+        style={heroImageBackground ? { color: "#fafafa" } : undefined}
+      >
+        {inner}
+      </div>
     </section>
   );
 }

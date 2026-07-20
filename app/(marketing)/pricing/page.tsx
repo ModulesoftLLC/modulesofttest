@@ -8,69 +8,66 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Container } from "@/components/shared/container";
-import { SectionHeading } from "@/components/shared/section-heading";
-import { AmbientGlow, FadeIn } from "@/components/shared/motion";
+import { FadeIn } from "@/components/shared/motion";
 import { pricingPlans } from "@/data/marketing";
 import { PricingPlans } from "./pricing-plans";
 
 export const metadata: Metadata = {
-  title: "Pricing — MODULESOFT",
+  title: "Үнэ — MODULESOFT",
   description:
-    "Simple plans for every stage — explore free, ship with Pro, or work with our design studio. Yearly billing gets two months free.",
+    "Үе шат бүрд тохирсон энгийн багцууд — үнэгүй туршиж, Pro-гоор нээлтээ хийж, дизайн студитэй маань хамтран ажиллаарай. Жилээр төлбөл хоёр сар үнэгүй.",
 };
 
 const faqs: { question: string; answer: string }[] = [
   {
-    question: "Can I try MODULESOFT before paying?",
+    question: "Төлбөр төлөхөөс өмнө MODULESOFT-ыг туршиж болох уу?",
     answer:
-      "Yes. The Free plan lets you browse every template and prototype a full site in the builder with no time limit and no credit card. Upgrade only when you’re ready to connect a domain and go live.",
+      "Болно. Үнэгүй багц бүх загварыг үзэж, бүтээгч дээр бүтэн сайтын эх загварыг ямар ч хугацааны хязгаар, банкны картгүйгээр гаргах боломж олгодог. Домэйн холбож, сайтаа нээхэд бэлэн болсон үедээ л шинэчлээрэй.",
   },
   {
-    question: "What’s the difference between Pro and Studio?",
+    question: "Pro болон Studio багц юугаараа ялгаатай вэ?",
     answer:
-      "Pro is self-serve: unlimited projects, every premium template, and your own domain. Studio adds our design team — monthly design hours, a priority queue, and quarterly strategy reviews for teams that want expert hands on their site.",
+      "Pro бол өөрөө удирдах багц: хязгааргүй төсөл, бүх премиум загвар, өөрийн домэйн. Studio дээр нь манай дизайны багийг нэмдэг — сар бүрийн дизайны цаг, тэргүүн ээлжийн дараалал, сайтдаа мэргэжлийн гар хүсдэг багуудад улирал тутмын стратегийн хяналт.",
   },
   {
-    question: "Can I switch plans or cancel later?",
+    question: "Дараа нь багцаа солих эсвэл цуцалж болох уу?",
     answer:
-      "Any time. Upgrades apply immediately with prorated billing, downgrades take effect at the end of the current cycle, and cancelling never deletes your projects — they stay editable on the Free plan.",
+      "Хэзээ ч болно. Дээшлүүлэлт хувь тэнцүүлсэн төлбөртэйгөөр шууд хэрэгжиж, бууруулалт одоогийн мөчлөгийн төгсгөлд идэвхжинэ. Цуцлахад төслүүд тань хэзээ ч устахгүй — Үнэгүй багц дээр засварлагдахуйц хэвээр үлдэнэ.",
   },
   {
-    question: "Do plans cover custom design work?",
+    question: "Багцад захиалгат дизайны ажил багтдаг уу?",
     answer:
-      "Studio includes monthly design hours for ongoing work. Larger one-off projects — full custom sites, ecommerce builds, rebrands — are scoped and quoted separately through our services team.",
+      "Studio багцад тогтмол ажилд зориулсан сар бүрийн дизайны цаг багтдаг. Томоохон нэг удаагийн төслүүд — бүрэн захиалгат сайт, цахим худалдаа, брэнд шинэчлэл — манай үйлчилгээний багаар тусад нь тооцогдож, үнийн санал гардаг.",
   },
   {
-    question: "Is there a discount for yearly billing?",
+    question: "Жилээр төлбөл хөнгөлөлт байдаг уу?",
     answer:
-      "Yes — yearly billing on Pro and Studio works out to two months free compared to paying monthly. The toggle above shows exactly what you save.",
+      "Тийм — Pro болон Studio багцыг жилээр төлөх нь сараар төлөхтэй харьцуулахад хоёр сар үнэгүйтэй тэнцдэг. Дээрх шилжүүлэгч таны хэмнэлтийг яг таг харуулна.",
   },
 ];
 
 export default function PricingPage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-40 pb-24">
-        <AmbientGlow />
+      <section className="pt-32 pb-24">
         <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <FadeIn>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                Pricing
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <h1 className="text-gradient mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
-                Simple plans, serious websites
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.16}>
-              <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
-                Start free, upgrade when you launch, and bring in the studio
-                when the stakes rise. No setup fees, no lock-in.
-              </p>
-            </FadeIn>
-          </div>
+          <FadeIn>
+            <div className="liquid-glass-strong mx-auto max-w-2xl rounded-[2.5rem] px-8 py-14 text-center sm:px-14">
+              <div className="relative z-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                  ҮНИЙН БАГЦУУД
+                </p>
+                <h1 className="mt-4 text-balance text-4xl font-medium tracking-[-0.05em] text-white sm:text-6xl">
+                  Энгийн багц, <em className="text-white/80">ноцтой</em>{" "}
+                  вэбсайт
+                </h1>
+                <p className="mt-6 text-pretty text-lg leading-relaxed text-white/60">
+                  Үнэгүй эхэлж, нээлт хийхдээ шинэчилж, чухал мөчид студиэ
+                  дуудаарай. Тохиргооны төлбөр ч үгүй, хараат байдал ч үгүй.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
           <div className="mt-16">
             <PricingPlans plans={pricingPlans} />
           </div>
@@ -78,26 +75,41 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border py-24">
+      <section className="pb-24">
         <Container>
-          <SectionHeading
-            eyebrow="FAQ"
-            title="Pricing, answered"
-            description="Still unsure which plan fits? Write to hello@modulesoft.io and we’ll point you to the cheapest one that does the job."
-          />
+          <FadeIn className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+              ТҮГЭЭМЭЛ АСУУЛТ
+            </p>
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+              Үнийн талаарх <em className="text-white/80">хариултууд</em>
+            </h2>
+            <p className="mt-4 text-pretty text-base leading-relaxed text-white/60">
+              Аль багц тохирохоо мэдэхгүй хэвээр байна уу? hello@modulesoft.io
+              хаяг руу бичээрэй — ажлаа бүтээх хамгийн хямд багцыг зааж өгье.
+            </p>
+          </FadeIn>
           <FadeIn className="mx-auto max-w-2xl">
-            <Accordion>
-              {faqs.map((faq) => (
-                <AccordionItem key={faq.question} value={faq.question}>
-                  <AccordionTrigger className="text-base">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <div className="liquid-glass rounded-3xl px-6 py-2 sm:px-8">
+              <div className="relative z-10">
+                <Accordion>
+                  {faqs.map((faq) => (
+                    <AccordionItem
+                      key={faq.question}
+                      value={faq.question}
+                      className="not-last:border-b not-last:border-white/10"
+                    >
+                      <AccordionTrigger className="text-base text-white">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-white/60">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </div>
           </FadeIn>
         </Container>
       </section>
@@ -106,25 +118,25 @@ export default function PricingPage() {
       <section className="pb-24">
         <Container>
           <FadeIn>
-            <div className="glow-primary relative overflow-hidden rounded-3xl border border-indigo-400/20 bg-gradient-to-br from-indigo-950/60 via-card to-card px-8 py-16 text-center sm:px-16">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/30 blur-[100px]"
-              />
-              <h2 className="text-gradient relative text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                Need something bigger than a plan?
-              </h2>
-              <p className="relative mx-auto mt-4 max-w-lg text-pretty text-muted-foreground">
-                Custom builds, ecommerce, rebrands — tell us the shape of the
-                project and we’ll quote it in two business days.
-              </p>
-              <div className="relative mt-9 flex justify-center">
-                <Link
-                  href="/order"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-6 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition-colors hover:from-indigo-400 hover:to-violet-400"
-                >
-                  Start a project <ArrowRight className="size-4" />
-                </Link>
+            <div className="liquid-glass-strong rounded-[2.5rem] px-8 py-16 text-center sm:px-16">
+              <div className="relative z-10">
+                <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+                  Багцаас <em className="text-white/80">том</em> зүйл хэрэгтэй
+                  юу?
+                </h2>
+                <p className="mx-auto mt-4 max-w-lg text-pretty text-white/60">
+                  Захиалгат бүтээн байгуулалт, цахим худалдаа, брэнд шинэчлэл
+                  — төслийнхөө хэлбэрийг хэлээрэй, бид ажлын хоёр өдрийн дотор
+                  үнийн санал гаргана.
+                </p>
+                <div className="mt-9 flex justify-center">
+                  <Link
+                    href="/order"
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-medium text-black transition-transform hover:scale-105 active:scale-95"
+                  >
+                    Төсөл эхлүүлэх <ArrowRight className="size-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </FadeIn>

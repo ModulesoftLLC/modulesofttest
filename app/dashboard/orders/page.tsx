@@ -55,31 +55,31 @@ const totalValue = orders.reduce((sum, order) => sum + order.total, 0);
 
 const summary = [
   {
-    label: "Total orders",
+    label: "Нийт захиалга",
     value: String(orders.length),
-    hint: "All time",
+    hint: "Бүх хугацаанд",
     icon: Package,
     iconClass: "bg-indigo-500/15 text-indigo-400",
   },
   {
-    label: "In production",
+    label: "Хийгдэж буй",
     value: String(inProduction),
-    hint: "Being built right now",
+    hint: "Яг одоо бүтээгдэж байна",
     icon: Hammer,
     iconClass: "bg-violet-500/15 text-violet-400",
   },
   {
-    label: "Total value",
+    label: "Нийт дүн",
     value: formatCurrency(totalValue),
-    hint: "Across all orders",
+    hint: "Бүх захиалгыг оруулаад",
     icon: Wallet,
     iconClass: "bg-emerald-500/15 text-emerald-400",
   },
 ];
 
 function templateName(templateId: string | null): string {
-  if (templateId === null) return "Custom build";
-  return getTemplateById(templateId)?.name ?? "Custom build";
+  if (templateId === null) return "Захиалгат бүтээл";
+  return getTemplateById(templateId)?.name ?? "Захиалгат бүтээл";
 }
 
 function OrderActions({ onView }: { onView: () => void }) {
@@ -87,7 +87,7 @@ function OrderActions({ onView }: { onView: () => void }) {
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <Button variant="ghost" size="icon-sm" aria-label="Order actions" />
+          <Button variant="ghost" size="icon-sm" aria-label="Захиалгын үйлдлүүд" />
         }
       >
         <MoreHorizontal className="size-4" />
@@ -95,11 +95,11 @@ function OrderActions({ onView }: { onView: () => void }) {
       <DropdownMenuContent align="end" className="w-44">
         <DropdownMenuItem onClick={onView}>
           <Eye className="size-4" />
-          View details
+          Дэлгэрэнгүй үзэх
         </DropdownMenuItem>
         <DropdownMenuItem disabled>
           <Download className="size-4" />
-          Download invoice
+          Нэхэмжлэх татах
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -112,9 +112,9 @@ export default function OrdersPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Orders</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Захиалгууд</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Everything you&rsquo;ve commissioned, from request to delivery.
+          Таны захиалсан бүх ажил — хүсэлтээс хүлээлгэн өгөх хүртэл.
         </p>
       </div>
 
@@ -150,12 +150,12 @@ export default function OrdersPage() {
         <Table>
           <TableHeader>
             <TableRow className="hover:bg-transparent">
-              <TableHead>Order</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Template</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead className="text-right">Total</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead>Захиалгын дугаар</TableHead>
+              <TableHead>Төрөл</TableHead>
+              <TableHead>Загвар</TableHead>
+              <TableHead>Огноо</TableHead>
+              <TableHead className="text-right">Дүн</TableHead>
+              <TableHead>Төлөв</TableHead>
               <TableHead className="w-10" />
             </TableRow>
           </TableHeader>
@@ -248,13 +248,13 @@ export default function OrdersPage() {
                   {selected.orderNumber}
                 </DialogTitle>
                 <DialogDescription>
-                  Placed {formatDate(selected.createdAt)} ·{" "}
+                  Захиалгын дэлгэрэнгүй — {formatDate(selected.createdAt)} ·{" "}
                   {websiteTypeMeta[selected.websiteType].label}
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Status</span>
+                  <span className="text-muted-foreground">Төлөв</span>
                   <Badge
                     className={cn(
                       "border-0",
@@ -265,22 +265,22 @@ export default function OrdersPage() {
                   </Badge>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Template</span>
+                  <span className="text-muted-foreground">Загвар</span>
                   <span>{templateName(selected.templateId)}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Budget range</span>
+                  <span className="text-muted-foreground">Төсвийн хязгаар</span>
                   <span>{budgetMeta[selected.budget].label}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Total</span>
+                  <span className="text-muted-foreground">Нийт дүн</span>
                   <span className="font-medium tabular-nums">
                     {formatCurrency(selected.total)}
                   </span>
                 </div>
                 <Separator />
                 <div>
-                  <p className="text-muted-foreground">Contact</p>
+                  <p className="text-muted-foreground">Холбоо барих</p>
                   <p className="mt-1">
                     {selected.customer.name} · {selected.customer.company}
                   </p>
@@ -290,7 +290,7 @@ export default function OrdersPage() {
                 </div>
                 <Separator />
                 <div>
-                  <p className="text-muted-foreground">Notes</p>
+                  <p className="text-muted-foreground">Тэмдэглэл</p>
                   <p className="mt-1">{selected.notes}</p>
                 </div>
               </div>

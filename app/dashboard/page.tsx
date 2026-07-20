@@ -36,8 +36,8 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Overview — Client dashboard | MODULESOFT",
-  description: "Your projects, orders and messages at a glance.",
+  title: "Тойм — Хэрэглэгчийн самбар | MODULESOFT",
+  description: "Таны төсөл, захиалга, зурвасын нэгдсэн тойм.",
 };
 
 const activeProjects = projects.filter(
@@ -65,30 +65,30 @@ const recentThreads = [...messageThreads]
 
 const stats = [
   {
-    label: "Active projects",
+    label: "Идэвхтэй төслүүд",
     value: String(activeProjects.length),
-    hint: "+1 since last month",
+    hint: "Өнгөрсөн сараас хойш +1",
     icon: FolderKanban,
     iconClass: "bg-indigo-500/15 text-indigo-400",
   },
   {
-    label: "Open orders",
+    label: "Нээлттэй захиалгууд",
     value: String(openOrders.length),
-    hint: "2 in production",
+    hint: "2 нь хийгдэж байна",
     icon: Package,
     iconClass: "bg-violet-500/15 text-violet-400",
   },
   {
-    label: "Unread messages",
+    label: "Уншаагүй зурвасууд",
     value: String(unreadMessages),
-    hint: "Across your threads",
+    hint: "Бүх харилцан яриаг оруулаад",
     icon: MessageSquare,
     iconClass: "bg-sky-500/15 text-sky-400",
   },
   {
-    label: "Total invested",
+    label: "Нийт зарцуулалт",
     value: formatCurrency(currentUser.totalSpent),
-    hint: "Since Nov 2025",
+    hint: "2025 оны 11-р сараас хойш",
     icon: Wallet,
     iconClass: "bg-emerald-500/15 text-emerald-400",
   },
@@ -97,20 +97,20 @@ const stats = [
 const quickActions = [
   {
     href: "/templates",
-    label: "Browse templates",
-    description: "Find a starting point in the marketplace",
+    label: "Загвар үзэх",
+    description: "Маркетплэйсээс эхлэх цэгээ олоорой",
     icon: LayoutTemplate,
   },
   {
     href: "/builder",
-    label: "Open builder",
-    description: "Jump straight into editing a site",
+    label: "Бүтээгч нээх",
+    description: "Сайтаа шууд засварлаж эхлээрэй",
     icon: PanelsTopLeft,
   },
   {
     href: "/contact",
-    label: "Contact support",
-    description: "We answer within one business day",
+    label: "Тусламж авах",
+    description: "Бид ажлын нэг өдрийн дотор хариулна",
     icon: LifeBuoy,
   },
 ];
@@ -124,10 +124,10 @@ export default function DashboardOverviewPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">
-            Welcome back, Sofia
+            Сайн байна уу, {currentUser.name}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {today} — here&rsquo;s what&rsquo;s happening across your projects.
+            {today} — таны төслүүдийн өнөөдрийн байдал.
           </p>
         </div>
         <Link
@@ -138,7 +138,7 @@ export default function DashboardOverviewPage() {
           )}
         >
           <Plus className="size-4" />
-          Start a project
+          Төсөл эхлүүлэх
         </Link>
       </div>
 
@@ -173,12 +173,12 @@ export default function DashboardOverviewPage() {
         {/* Active projects */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Active projects</CardTitle>
+            <CardTitle>Идэвхтэй төслүүд</CardTitle>
             <Link
               href="/dashboard/projects"
               className="flex items-center gap-1 text-sm text-indigo-400 transition-colors hover:text-indigo-300"
             >
-              View all <ArrowRight className="size-3.5" />
+              Бүгдийг үзэх <ArrowRight className="size-3.5" />
             </Link>
           </CardHeader>
           <CardContent className="space-y-5">
@@ -221,7 +221,7 @@ export default function DashboardOverviewPage() {
                   </div>
                 </div>
                 <div className="hidden shrink-0 text-right sm:block">
-                  <p className="text-xs text-muted-foreground">Due</p>
+                  <p className="text-xs text-muted-foreground">Дуусах</p>
                   <p className="text-sm">{formatDate(project.dueDate)}</p>
                 </div>
               </Link>
@@ -233,12 +233,12 @@ export default function DashboardOverviewPage() {
         <div className="space-y-6">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle>Recent messages</CardTitle>
+              <CardTitle>Сүүлийн зурвасууд</CardTitle>
               <Link
                 href="/dashboard/messages"
                 className="flex items-center gap-1 text-sm text-indigo-400 transition-colors hover:text-indigo-300"
               >
-                Open inbox <ArrowRight className="size-3.5" />
+                Ирсэн зурвас нээх <ArrowRight className="size-3.5" />
               </Link>
             </CardHeader>
             <CardContent className="space-y-1">
@@ -279,7 +279,7 @@ export default function DashboardOverviewPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Quick actions</CardTitle>
+              <CardTitle>Шуурхай үйлдлүүд</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {quickActions.map((action) => (

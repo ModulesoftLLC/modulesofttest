@@ -67,7 +67,7 @@ export function Canvas({
   onDuplicate,
   onRemove,
 }: CanvasProps) {
-  const host = `${siteName.trim().toLowerCase().replace(/\s+/g, "-") || "untitled"}.modulesoft.site`;
+  const host = `${siteName.trim().toLowerCase().replace(/\s+/g, "-") || "minii-website"}.modulesoft.site`;
 
   return (
     <div
@@ -135,25 +135,25 @@ export function Canvas({
                           {section.label}
                         </span>
                         <ToolbarButton
-                          label="Move up"
+                          label="Дээш"
                           onClick={() => onMove(section.id, "up")}
                         >
                           <ArrowUp className="size-3.5" />
                         </ToolbarButton>
                         <ToolbarButton
-                          label="Move down"
+                          label="Доош"
                           onClick={() => onMove(section.id, "down")}
                         >
                           <ArrowDown className="size-3.5" />
                         </ToolbarButton>
                         <ToolbarButton
-                          label="Duplicate"
+                          label="Хувилах"
                           onClick={() => onDuplicate(section.id)}
                         >
                           <Copy className="size-3.5" />
                         </ToolbarButton>
                         <ToolbarButton
-                          label="Remove"
+                          label="Устгах"
                           danger
                           onClick={() => onRemove(section.id)}
                         >
@@ -170,9 +170,9 @@ export function Canvas({
             {sections.length === 0 && (
               <div className="flex flex-col items-center justify-center gap-3 px-8 py-24 text-center">
                 <LayoutTemplate className="size-8 text-muted-foreground/40" />
-                <p className="text-sm font-medium">This page is empty</p>
+                <p className="text-sm font-medium">Энэ хуудас хоосон байна</p>
                 <p className="text-xs text-muted-foreground">
-                  Add blocks from the left panel to start building.
+                  Зүүн талын самбараас блок нэмж эхлээрэй.
                 </p>
               </div>
             )}

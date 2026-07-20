@@ -23,10 +23,10 @@ export default function MyTemplatesPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">
-            My templates
+            Миний загварууд
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Templates you own, plus a few we think you&rsquo;ll like.
+            Таны эзэмшдэг загварууд, дээр нь танд таалагдаж магадгүй хэдэн санал.
           </p>
         </div>
         <Tabs
@@ -34,8 +34,8 @@ export default function MyTemplatesPage() {
           onValueChange={(value) => setFilter(value as "owned" | "all")}
         >
           <TabsList>
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="owned">Owned</TabsTrigger>
+            <TabsTrigger value="all">Бүгд</TabsTrigger>
+            <TabsTrigger value="owned">Эзэмшдэг</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
@@ -44,9 +44,9 @@ export default function MyTemplatesPage() {
       <section className="space-y-4">
         <div className="flex items-center gap-2">
           <BadgeCheck className="size-4 text-indigo-400" />
-          <h2 className="font-semibold">Purchased</h2>
+          <h2 className="font-semibold">Худалдаж авсан</h2>
           <span className="text-sm text-muted-foreground">
-            {purchased.length} templates
+            {purchased.length} загвар
           </span>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -58,7 +58,7 @@ export default function MyTemplatesPage() {
                   className="aspect-[4/3]"
                 />
                 <Badge className="absolute left-3 top-3 border-0 bg-emerald-500/90 text-white">
-                  Owned
+                  Эзэмшдэг
                 </Badge>
               </div>
               <CardContent className="space-y-4 p-4">
@@ -76,7 +76,7 @@ export default function MyTemplatesPage() {
                   )}
                 >
                   <PenTool className="size-4" />
-                  Open in builder
+                  Бүтээгчээр нээх
                 </Link>
               </CardContent>
             </Card>
@@ -89,7 +89,7 @@ export default function MyTemplatesPage() {
         <section className="space-y-4">
           <div className="flex items-center gap-2">
             <Sparkles className="size-4 text-violet-400" />
-            <h2 className="font-semibold">Recommended for you</h2>
+            <h2 className="font-semibold">Танд санал болгох</h2>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {recommended.map((template) => (
@@ -104,7 +104,7 @@ export default function MyTemplatesPage() {
           href="/templates"
           className="flex items-center gap-1.5 text-sm text-indigo-400 transition-colors hover:text-indigo-300"
         >
-          Browse full marketplace <ArrowUpRight className="size-4" />
+          Бүх загварыг үзэх <ArrowUpRight className="size-4" />
         </Link>
       </div>
     </div>

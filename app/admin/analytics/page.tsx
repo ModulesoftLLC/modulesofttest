@@ -18,8 +18,8 @@ import { analytics } from "@/data/analytics";
 import { formatCurrency } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Analytics — MODULESOFT Admin",
-  description: "Revenue trends, order volume, traffic, and conversion.",
+  title: "Аналитик — MODULESOFT Админ",
+  description: "Орлогын хандлага, захиалгын хэмжээ, трафик, хөрвүүлэлт.",
 };
 
 const kpis: {
@@ -30,28 +30,28 @@ const kpis: {
   tint: string;
 }[] = [
   {
-    label: "Total revenue",
+    label: "Нийт орлого",
     value: formatCurrency(analytics.totalRevenue),
     growth: analytics.revenueGrowth,
     icon: DollarSign,
     tint: "bg-indigo-500/15 text-indigo-400",
   },
   {
-    label: "Orders",
+    label: "Захиалгууд",
     value: analytics.totalOrders.toLocaleString("en-US"),
     growth: analytics.ordersGrowth,
     icon: Package,
     tint: "bg-violet-500/15 text-violet-400",
   },
   {
-    label: "Active users",
+    label: "Идэвхтэй хэрэглэгчид",
     value: analytics.activeUsers.toLocaleString("en-US"),
     growth: analytics.usersGrowth,
     icon: Users,
     tint: "bg-fuchsia-500/15 text-fuchsia-400",
   },
   {
-    label: "Conversion rate",
+    label: "Хөрвүүлэлтийн хувь",
     value: `${analytics.conversionRate}%`,
     growth: analytics.conversionGrowth,
     icon: Percent,
@@ -62,10 +62,10 @@ const kpis: {
 const trafficColors = ["#6366f1", "#8b5cf6", "#d946ef", "#a5b4fc", "#c4b5fd"];
 
 const funnel = [
-  { label: "Visitors", value: "128k", pct: "100%", width: "100%" },
-  { label: "Template views", value: "42k", pct: "32.8%", width: "72%" },
-  { label: "Builder sessions", value: "9.8k", pct: "7.7%", width: "46%" },
-  { label: "Orders", value: "342", pct: "0.3%", width: "22%" },
+  { label: "Зочид", value: "128k", pct: "100%", width: "100%" },
+  { label: "Загвар үзэлт", value: "42k", pct: "32.8%", width: "72%" },
+  { label: "Бүтээгчийн сешн", value: "9.8k", pct: "7.7%", width: "46%" },
+  { label: "Захиалгууд", value: "342", pct: "0.3%", width: "22%" },
 ];
 
 function RevenueAreaChart() {
@@ -95,7 +95,7 @@ function RevenueAreaChart() {
         viewBox={`0 0 ${W} ${H}`}
         className="h-auto w-full"
         role="img"
-        aria-label="Revenue by month"
+        aria-label="Сар тутмын орлого"
       >
         <defs>
           <linearGradient id="revenue-fill" x1="0" y1="0" x2="0" y2="1">
@@ -158,9 +158,9 @@ export default function AdminAnalyticsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Analytics</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Аналитик</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          A deeper look at revenue, order volume, and where visitors come from.
+          Орлого, захиалгын хэмжээ, зочдын эх үүсвэрийн дэлгэрэнгүй шинжилгээ.
         </p>
       </div>
 
@@ -193,9 +193,9 @@ export default function AdminAnalyticsPage() {
       {/* Revenue area chart */}
       <Card>
         <CardHeader>
-          <CardTitle>Revenue trend</CardTitle>
+          <CardTitle>Орлогын хандлага</CardTitle>
           <CardDescription>
-            Monthly revenue, August through July.
+            8-р сараас 7-р сар хүртэлх сарын орлого.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -206,8 +206,8 @@ export default function AdminAnalyticsPage() {
       {/* Orders per month */}
       <Card>
         <CardHeader>
-          <CardTitle>Orders per month</CardTitle>
-          <CardDescription>Completed checkout volume.</CardDescription>
+          <CardTitle>Сарын захиалгууд</CardTitle>
+          <CardDescription>Амжилттай хийгдсэн захиалгын хэмжээ.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex h-40 items-end gap-2 sm:gap-3">
@@ -217,12 +217,12 @@ export default function AdminAnalyticsPage() {
                 className="group relative flex h-full flex-1 flex-col justify-end"
               >
                 <span className="pointer-events-none absolute -top-7 left-1/2 z-10 hidden -translate-x-1/2 rounded-md bg-secondary px-2 py-1 text-[11px] font-medium tabular-nums whitespace-nowrap group-hover:block">
-                  {point.orders} orders
+                  {point.orders} захиалга
                 </span>
                 <div
                   className="w-full rounded-t-md bg-gradient-to-t from-violet-600 to-fuchsia-500 opacity-80 transition-opacity group-hover:opacity-100"
                   style={{ height: `${(point.orders / maxOrders) * 100}%` }}
-                  title={`${point.month}: ${point.orders} orders`}
+                  title={`${point.month}: ${point.orders} захиалга`}
                 />
               </div>
             ))}
@@ -244,9 +244,9 @@ export default function AdminAnalyticsPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Traffic sources</CardTitle>
+            <CardTitle>Трафикийн эх үүсвэр</CardTitle>
             <CardDescription>
-              Where the last period&rsquo;s visits came from.
+              Өнгөрсөн үеийн зочилтууд хаанаас ирсэн бэ.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -289,9 +289,9 @@ export default function AdminAnalyticsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Conversion funnel</CardTitle>
+            <CardTitle>Хөрвүүлэлтийн юүлүүр</CardTitle>
             <CardDescription>
-              From first visit to a placed order.
+              Анхны зочилтоос захиалга хийх хүртэл.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">

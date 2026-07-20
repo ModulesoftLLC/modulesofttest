@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Clock } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/shared/container";
-import {
-  AmbientGlow,
-  FadeIn,
-  Stagger,
-  StaggerItem,
-} from "@/components/shared/motion";
+import { FadeIn, Stagger, StaggerItem } from "@/components/shared/motion";
 import { listBlogPosts } from "@/lib/api";
 import { formatDate, initials } from "@/lib/format";
 import type { BlogPost } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Blog — MODULESOFT",
+  title: "Блог — MODULESOFT",
   description:
-    "Notes from 1,200+ launches — design, strategy, and engineering lessons on building websites that actually perform.",
+    "1,200+ нээлтээс үлдээсэн тэмдэглэлүүд — жинхэнэ үр дүн өгдөг вэбсайт бүтээх дизайн, стратеги, инженерчлэлийн сургамжууд.",
 };
 
 function PostCover({
@@ -42,16 +36,16 @@ function PostCover({
 function PostMeta({ post }: { post: BlogPost }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-fuchsia-500 text-xs font-semibold text-white">
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-medium text-white">
         {initials(post.author)}
       </span>
-      <div className="min-w-0 text-xs text-muted-foreground">
-        <p className="truncate font-medium text-foreground">{post.author}</p>
+      <div className="min-w-0 text-xs text-white/50">
+        <p className="truncate font-medium text-white">{post.author}</p>
         <p className="mt-0.5 flex items-center gap-2">
           {formatDate(post.publishedAt)}
           <span aria-hidden>·</span>
           <span className="flex items-center gap-1">
-            <Clock className="size-3" /> {post.readingTime} min read
+            <Clock className="size-3" /> {post.readingTime} мин унших
           </span>
         </p>
       </div>
@@ -65,27 +59,25 @@ export default async function BlogPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden pt-40 pb-16">
-        <AmbientGlow />
+      <section className="pt-32 pb-12">
         <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <FadeIn>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                Blog
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <h1 className="text-gradient mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
-                Notes from the studio
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.16}>
-              <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
-                What 1,200+ launches taught us about design, conversion, and
-                the web — written down so you don’t pay the tuition twice.
-              </p>
-            </FadeIn>
-          </div>
+          <FadeIn>
+            <div className="liquid-glass-strong mx-auto max-w-2xl rounded-[2.5rem] px-8 py-14 text-center sm:px-14">
+              <div className="relative z-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                  БЛОГ
+                </p>
+                <h1 className="mt-4 text-balance text-4xl font-medium tracking-[-0.05em] text-white sm:text-6xl">
+                  Студийн <em className="text-white/80">тэмдэглэлүүд</em>
+                </h1>
+                <p className="mt-6 text-pretty text-lg leading-relaxed text-white/60">
+                  1,200+ нээлт бидэнд дизайн, худалдан авалт, вэбийн талаар юу
+                  заасныг бичиж үлдээлээ — та сургалтын төлбөрийг давхардуулж
+                  төлөх хэрэггүй.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </section>
 
@@ -96,31 +88,31 @@ export default async function BlogPage() {
             <FadeIn>
               <Link
                 href={`/blog/${featured.slug}`}
-                className="card-hover group mb-6 grid overflow-hidden rounded-xl border border-border bg-card lg:grid-cols-2"
+                className="liquid-glass group mb-6 grid overflow-hidden rounded-3xl transition-transform hover:scale-[1.02] lg:grid-cols-2"
               >
                 <PostCover
                   post={featured}
                   className="relative aspect-[16/9] overflow-hidden lg:aspect-auto lg:min-h-full"
                 />
-                <div className="flex flex-col p-8 lg:p-10">
+                <div className="relative z-10 flex flex-col p-8 lg:p-10">
                   <div className="flex items-center gap-3">
-                    <Badge className="border-0 bg-indigo-500/15 text-indigo-300">
+                    <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/80">
                       {featured.category}
-                    </Badge>
-                    <span className="text-xs text-muted-foreground">
-                      Latest post
+                    </span>
+                    <span className="text-xs text-white/50">
+                      Сүүлийн нийтлэл
                     </span>
                   </div>
-                  <h2 className="mt-4 text-balance text-2xl font-semibold tracking-tight group-hover:text-indigo-300 sm:text-3xl">
+                  <h2 className="mt-4 text-balance text-2xl font-medium tracking-tight text-white sm:text-3xl">
                     {featured.title}
                   </h2>
-                  <p className="mt-3 flex-1 text-pretty leading-relaxed text-muted-foreground">
+                  <p className="mt-3 flex-1 text-pretty leading-relaxed text-white/60">
                     {featured.excerpt}
                   </p>
                   <div className="mt-8 flex items-center justify-between gap-4">
                     <PostMeta post={featured} />
-                    <span className="flex items-center gap-1.5 text-sm font-medium text-indigo-400">
-                      Read post <ArrowUpRight className="size-4" />
+                    <span className="flex items-center gap-1.5 text-sm font-medium text-white">
+                      Унших <ArrowUpRight className="size-4" />
                     </span>
                   </div>
                 </div>
@@ -134,23 +126,23 @@ export default async function BlogPage() {
               <StaggerItem key={post.id}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="card-hover group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card"
+                  className="liquid-glass group flex h-full flex-col overflow-hidden rounded-3xl transition-transform hover:scale-105"
                 >
                   <PostCover
                     post={post}
                     className="relative aspect-[16/9] overflow-hidden"
                   />
-                  <div className="flex flex-1 flex-col p-6">
-                    <Badge className="w-fit border-0 bg-indigo-500/15 text-indigo-300">
+                  <div className="relative z-10 flex flex-1 flex-col p-6">
+                    <span className="w-fit rounded-full bg-white/10 px-3 py-1 text-xs text-white/80">
                       {post.category}
-                    </Badge>
-                    <h2 className="mt-3 text-balance text-lg font-semibold group-hover:text-indigo-300">
+                    </span>
+                    <h2 className="mt-3 text-balance text-lg font-medium text-white">
                       {post.title}
                     </h2>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">
                       {post.excerpt}
                     </p>
-                    <div className="mt-6 border-t border-border pt-5">
+                    <div className="mt-6 pt-5">
                       <PostMeta post={post} />
                     </div>
                   </div>

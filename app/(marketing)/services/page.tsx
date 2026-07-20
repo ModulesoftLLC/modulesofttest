@@ -19,20 +19,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Container } from "@/components/shared/container";
-import { SectionHeading } from "@/components/shared/section-heading";
-import {
-  AmbientGlow,
-  FadeIn,
-  Stagger,
-  StaggerItem,
-} from "@/components/shared/motion";
+import { FadeIn, Stagger, StaggerItem } from "@/components/shared/motion";
 import { services } from "@/data/marketing";
 import { formatCurrency } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Services — MODULESOFT",
+  title: "Үйлчилгээ — MODULESOFT",
   description:
-    "From template customization to fully bespoke builds — the MODULESOFT studio designs, builds, and grows websites that perform.",
+    "Загвар тохируулгаас бүрэн захиалгат бүтээн байгуулалт хүртэл — MODULESOFT студи үр дүн авчирдаг вэбсайтуудыг зохион бүтээж, хөгжүүлж, өсгөдөг.",
 };
 
 const serviceIcons: Record<string, LucideIcon> = {
@@ -46,57 +40,57 @@ const serviceIcons: Record<string, LucideIcon> = {
 
 const process: { title: string; description: string }[] = [
   {
-    title: "Discover",
+    title: "Судалгаа",
     description:
-      "A focused workshop on your positioning, customers, and conversion goals — the brief every later decision answers to.",
+      "Таны байр суурь, харилцагчид, худалдан авалтын зорилгод чиглэсэн төвлөрсөн воркшоп — цаашдын бүх шийдвэрийн үндэс.",
   },
   {
-    title: "Design",
+    title: "Дизайн",
     description:
-      "Structure first, polish second. We sequence the pages as an argument, then craft the visual system around it.",
+      "Эхлээд бүтэц, дараа нь гоо сайхан. Хуудсуудыг үнэмшүүлэх дараалалд оруулж, дараа нь визуал системийг барьдаг.",
   },
   {
-    title: "Build",
+    title: "Хөгжүүлэлт",
     description:
-      "Pixel-accurate, performance-budgeted implementation — fonts subset, images sized, animation on the compositor.",
+      "Пиксел бүрд үнэнч, хурдны төсөвтэй хэрэгжүүлэлт — фонт шахагдсан, зураг хэмжээгээ олсон, хөдөлгөөн зөв давхаргад.",
   },
   {
-    title: "Launch",
+    title: "Нээлт",
     description:
-      "Domains, analytics, redirects, and QA across devices. Launch day is a checklist, not an adventure.",
+      "Домэйн, аналитик, чиглүүлэлт, бүх төхөөрөмж дээрх шалгалт. Нээлтийн өдөр бол адал явдал биш — жагсаалт.",
   },
   {
-    title: "Grow",
+    title: "Өсөлт",
     description:
-      "Post-launch iteration on real data — A/B tests, content updates, and performance monitoring under a care plan.",
+      "Нээлтийн дараа бодит өгөгдөл дээр тулгуурласан сайжруулалт — A/B тест, агуулгын шинэчлэл, хурдны хяналт.",
   },
 ];
 
 const faqs: { question: string; answer: string }[] = [
   {
-    question: "How long does a typical project take?",
+    question: "Нэг төсөл ерөнхийдөө хэр удаан үргэлжилдэг вэ?",
     answer:
-      "Template customizations usually ship in one to two weeks. Fully custom marketing sites run four to eight weeks depending on page count, and ecommerce or web-app builds are scoped individually — most land between six and twelve weeks.",
+      "Загвар тохируулга ихэвчлэн нэгээс хоёр долоо хоногт дуусдаг. Бүрэн захиалгат маркетингийн сайт хуудасны тооноос хамааран дөрвөөс найман долоо хоног, харин цахим худалдаа болон вэб апп төслүүд тус тусад нь тооцогддог — ихэнх нь зургаагаас арван хоёр долоо хоногт багтдаг.",
   },
   {
-    question: "Do I need to buy a template first?",
+    question: "Эхлээд загвар худалдаж авах шаардлагатай юу?",
     answer:
-      "No. If a template is the right starting point, its cost is folded into the engagement. If your project needs a blank canvas, we skip the marketplace entirely and design from your brief.",
+      "Үгүй. Хэрэв загвар зөв эхлэл бол түүний үнэ төслийн нийт үнэд шингэдэг. Хэрэв таны төсөлд хоосон цаас хэрэгтэй бол бид загварын санг алгасаад шууд таны даалгавраас дизайн хийдэг.",
   },
   {
-    question: "Who owns the website after launch?",
+    question: "Нээлтийн дараа вэбсайтыг хэн эзэмших вэ?",
     answer:
-      "You do — design files, code, content, and domain. There’s no lock-in: sites we build run on standard modern stacks, and you can host with us or anywhere you like.",
+      "Та эзэмшинэ — дизайны файл, код, агуулга, домэйн бүгд таных. Ямар ч хараат байдал үгүй: бидний бүтээсэн сайтууд орчин үеийн стандарт технологи дээр ажилладаг тул та бидэнтэй ч, өөр хаана ч байршуулж болно.",
   },
   {
-    question: "Can you work with our existing brand?",
+    question: "Манай одоо байгаа брэндтэй ажиллаж чадах уу?",
     answer:
-      "Absolutely. Most engagements start from an existing identity. If the brand needs work first, our Brand & Identity service can run ahead of the website so everything ships coherent.",
+      "Мэдээж. Ихэнх төсөл одоо байгаа брэндээс эхэлдэг. Хэрэв брэнд өөрөө засвар шаардаж байвал манай брэнд ба таних тэмдгийн үйлчилгээ вэбсайтын өмнө хийгдэж, бүгд нэгдмэл гарах боломжтой.",
   },
   {
-    question: "What happens after the site goes live?",
+    question: "Сайт нээгдсэний дараа юу болох вэ?",
     answer:
-      "Every launch includes thirty days of support. After that, Care & Growth plans cover monthly design hours, performance monitoring, and A/B testing — your website treated as a product, not a project.",
+      "Нээлт бүр гучин хоногийн дэмжлэгтэй ирдэг. Дараа нь Арчилгаа ба Өсөлтийн багц сар бүрийн дизайны цаг, хурдны хяналт, A/B тестийг хамардаг — таны вэбсайт төсөл биш, бүтээгдэхүүн шиг арчлагдана.",
   },
 ];
 
@@ -104,28 +98,26 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-40 pb-20">
-        <AmbientGlow />
+      <section className="pt-32 pb-16">
         <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <FadeIn>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                Studio services
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <h1 className="text-gradient mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
-                Done-for-you, down to the pixel
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.16}>
-              <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
-                The team that builds our marketplace takes on a limited number
-                of client engagements each quarter — same standards, same
-                performance budgets, your name on the door.
-              </p>
-            </FadeIn>
-          </div>
+          <FadeIn>
+            <div className="liquid-glass-strong mx-auto max-w-3xl rounded-[2.5rem] px-8 py-14 text-center sm:px-14">
+              <div className="relative z-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                  СТУДИЙН ҮЙЛЧИЛГЭЭ
+                </p>
+                <h1 className="mt-4 text-balance text-4xl font-medium tracking-[-0.05em] text-white sm:text-6xl">
+                  Пиксел бүрийг <em className="text-white/80">төгс</em> хийж
+                  өгнө
+                </h1>
+                <p className="mt-6 text-pretty text-lg leading-relaxed text-white/60">
+                  Манай загварын санг бүтээдэг баг улирал бүр цөөн тооны
+                  захиалгат төсөл хүлээн авдаг — адилхан стандарт, адилхан
+                  хурдны төсөв, харин хаалган дээр таны нэр.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </section>
 
@@ -137,33 +129,35 @@ export default function ServicesPage() {
               const Icon = serviceIcons[service.icon] ?? Sparkles;
               return (
                 <StaggerItem key={service.id}>
-                  <div className="card-hover flex h-full flex-col rounded-xl border border-border bg-card p-7">
-                    <div className="flex size-11 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 shadow-lg shadow-indigo-500/25">
-                      <Icon className="size-5 text-white" />
-                    </div>
-                    <h2 className="mt-5 text-lg font-semibold">
-                      {service.title}
-                    </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {service.description}
-                    </p>
-                    <ul className="mt-5 space-y-2.5">
-                      {service.deliverables.map((deliverable) => (
-                        <li
-                          key={deliverable}
-                          className="flex items-start gap-2.5 text-sm text-foreground/90"
-                        >
-                          <Check className="mt-0.5 size-4 shrink-0 text-indigo-400" />
-                          {deliverable}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-6 border-t border-border pt-5 text-sm text-muted-foreground">
-                      From{" "}
-                      <span className="text-base font-semibold text-indigo-400">
-                        {formatCurrency(service.startingPrice)}
+                  <div className="liquid-glass flex h-full flex-col rounded-3xl p-7 transition-transform hover:scale-105">
+                    <div className="relative z-10 flex flex-1 flex-col">
+                      <span className="flex size-8 items-center justify-center rounded-full bg-white/10">
+                        <Icon className="size-4 text-white" />
                       </span>
-                    </p>
+                      <h2 className="mt-5 text-lg font-medium text-white">
+                        {service.title}
+                      </h2>
+                      <p className="mt-2 text-sm leading-relaxed text-white/60">
+                        {service.description}
+                      </p>
+                      <ul className="mt-5 flex-1 space-y-2.5">
+                        {service.deliverables.map((deliverable) => (
+                          <li
+                            key={deliverable}
+                            className="flex items-start gap-2.5 text-sm text-white/80"
+                          >
+                            <Check className="mt-0.5 size-4 shrink-0 text-white/60" />
+                            {deliverable}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-6 pt-5 text-sm text-white/60">
+                        <span className="text-base font-medium text-white">
+                          {formatCurrency(service.startingPrice)}
+                        </span>
+                        -с эхэлнэ
+                      </p>
+                    </div>
                   </div>
                 </StaggerItem>
               );
@@ -173,32 +167,36 @@ export default function ServicesPage() {
       </section>
 
       {/* Process timeline */}
-      <section className="border-t border-border py-24">
+      <section className="pb-24">
         <Container>
-          <SectionHeading
-            eyebrow="Process"
-            title="Five phases, zero surprises"
-            description="Every engagement follows the same spine, so you always know what’s happening and what comes next."
-          />
+          <FadeIn className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+              АЖЛЫН ЯВЦ
+            </p>
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+              Таван үе шат, тэг <em className="text-white/80">гэнэтийн</em>{" "}
+              зүйл
+            </h2>
+            <p className="mt-4 text-pretty text-base leading-relaxed text-white/60">
+              Төсөл бүр нэг ижил нурууг дагадаг тул та одоо юу болж байгааг
+              болон дараа нь юу ирэхийг үргэлж мэдэж байх болно.
+            </p>
+          </FadeIn>
           <Stagger className="grid gap-6 md:grid-cols-5">
             {process.map((phase, index) => (
               <StaggerItem key={phase.title} className="relative">
-                <div className="h-full">
-                  <div className="flex items-center gap-3">
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25">
+                <div className="liquid-glass h-full rounded-3xl p-5">
+                  <div className="relative z-10">
+                    <span className="flex size-8 items-center justify-center rounded-full bg-white/10 text-sm font-medium text-white">
                       {index + 1}
                     </span>
-                    {index < process.length - 1 && (
-                      <span
-                        aria-hidden
-                        className="hidden h-px flex-1 bg-gradient-to-r from-indigo-500/50 to-transparent md:block"
-                      />
-                    )}
+                    <h3 className="mt-4 font-medium text-white">
+                      {phase.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/60">
+                      {phase.description}
+                    </p>
                   </div>
-                  <h3 className="mt-4 font-semibold">{phase.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {phase.description}
-                  </p>
                 </div>
               </StaggerItem>
             ))}
@@ -207,26 +205,41 @@ export default function ServicesPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border py-24">
+      <section className="pb-24">
         <Container>
-          <SectionHeading
-            eyebrow="FAQ"
-            title="Questions clients actually ask"
-            description="Anything else — write to hello@modulesoft.io and a human answers within one business day."
-          />
+          <FadeIn className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+              ТҮГЭЭМЭЛ АСУУЛТ
+            </p>
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+              Харилцагчдын <em className="text-white/80">бодит</em> асуултууд
+            </h2>
+            <p className="mt-4 text-pretty text-base leading-relaxed text-white/60">
+              Өөр асуух зүйл байвал hello@modulesoft.io хаяг руу бичээрэй —
+              ажлын нэг өдрийн дотор жинхэнэ хүн хариулна.
+            </p>
+          </FadeIn>
           <FadeIn className="mx-auto max-w-2xl">
-            <Accordion>
-              {faqs.map((faq) => (
-                <AccordionItem key={faq.question} value={faq.question}>
-                  <AccordionTrigger className="text-base">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <div className="liquid-glass rounded-3xl px-6 py-2 sm:px-8">
+              <div className="relative z-10">
+                <Accordion>
+                  {faqs.map((faq) => (
+                    <AccordionItem
+                      key={faq.question}
+                      value={faq.question}
+                      className="not-last:border-b not-last:border-white/10"
+                    >
+                      <AccordionTrigger className="text-base text-white">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-white/60">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </div>
           </FadeIn>
         </Container>
       </section>
@@ -235,26 +248,25 @@ export default function ServicesPage() {
       <section className="pb-24">
         <Container>
           <FadeIn>
-            <div className="glow-primary relative overflow-hidden rounded-3xl border border-indigo-400/20 bg-gradient-to-br from-indigo-950/60 via-card to-card px-8 py-16 text-center sm:px-16">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/30 blur-[100px]"
-              />
-              <h2 className="text-gradient relative text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                Tell us what you’re building
-              </h2>
-              <p className="relative mx-auto mt-4 max-w-lg text-pretty text-muted-foreground">
-                Share a short brief and we’ll come back with a recommended
-                approach, a timeline, and a fixed quote — usually within
-                two business days.
-              </p>
-              <div className="relative mt-9 flex justify-center">
-                <Link
-                  href="/order"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-6 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition-colors hover:from-indigo-400 hover:to-violet-400"
-                >
-                  Start a project <ArrowRight className="size-4" />
-                </Link>
+            <div className="liquid-glass-strong rounded-[2.5rem] px-8 py-16 text-center sm:px-16">
+              <div className="relative z-10">
+                <h2 className="text-balance text-3xl font-medium tracking-tight text-white sm:text-4xl">
+                  Юу бүтээхээ <em className="text-white/80">бидэнд</em>{" "}
+                  хэлээрэй
+                </h2>
+                <p className="mx-auto mt-4 max-w-lg text-pretty text-white/60">
+                  Товч даалгавраа илгээгээрэй — бид санал болгох арга барил,
+                  хугацааны төлөвлөгөө, тогтсон үнийн саналыг ихэвчлэн ажлын
+                  хоёр өдрийн дотор буцаан хүргэнэ.
+                </p>
+                <div className="mt-9 flex justify-center">
+                  <Link
+                    href="/order"
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-medium text-black transition-transform hover:scale-105 active:scale-95"
+                  >
+                    Төсөл эхлүүлэх <ArrowRight className="size-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </FadeIn>

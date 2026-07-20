@@ -96,8 +96,8 @@ export function AmbientGlow({ className }: { className?: string }) {
         className
       )}
     >
-      <div className="absolute left-1/2 top-[-240px] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-indigo-600/25 blur-[140px]" />
-      <div className="absolute left-[18%] top-[-120px] h-[320px] w-[420px] rounded-full bg-fuchsia-600/15 blur-[120px]" />
+      <div className="absolute left-1/2 top-[-240px] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-white/10 blur-[140px]" />
+      <div className="absolute left-[18%] top-[-120px] h-[320px] w-[420px] rounded-full bg-white/5 blur-[120px]" />
     </div>
   );
 }

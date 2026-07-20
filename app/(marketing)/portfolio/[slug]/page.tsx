@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/shared/container";
 import { FadeIn, Stagger, StaggerItem } from "@/components/shared/motion";
 import { portfolioItems } from "@/data/portfolio";
@@ -19,9 +18,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const item = await getPortfolioItem(slug);
-  if (!item) return { title: "Case study — MODULESOFT" };
+  if (!item) return { title: "Кейс судалгаа — MODULESOFT" };
   return {
-    title: `${item.title} — MODULESOFT Portfolio`,
+    title: `${item.title} — MODULESOFT Портфолио`,
     description: item.summary,
   };
 }
@@ -42,20 +41,21 @@ export default async function PortfolioDetailPage({
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16">
+      <section className="pt-28 pb-16">
         <Container>
           <FadeIn>
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="liquid-glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white/80 transition-transform hover:scale-105"
             >
-              <ArrowLeft className="size-4" /> All case studies
+              <ArrowLeft className="relative z-10 size-4" />
+              <span className="relative z-10">Бүх кейс судалгаа</span>
             </Link>
           </FadeIn>
 
           <FadeIn delay={0.08}>
             <div
-              className="relative mt-8 flex aspect-[21/9] items-end overflow-hidden rounded-2xl p-8 sm:p-12"
+              className="relative mt-8 flex aspect-[21/9] items-end overflow-hidden rounded-[2.5rem] p-8 sm:p-12"
               style={{
                 background: `linear-gradient(135deg, ${item.palette.from}, ${item.palette.to})`,
               }}
@@ -65,10 +65,10 @@ export default async function PortfolioDetailPage({
                 className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.3),transparent_55%),linear-gradient(to_top,rgba(0,0,0,0.55),transparent_60%)]"
               />
               <div className="relative">
-                <Badge className="border-0 bg-black/30 text-white backdrop-blur">
+                <span className="rounded-full bg-black/30 px-3 py-1 text-xs text-white backdrop-blur">
                   {item.industry}
-                </Badge>
-                <h1 className="mt-4 max-w-2xl text-balance text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                </span>
+                <h1 className="mt-4 max-w-2xl text-balance text-3xl font-medium tracking-[-0.05em] text-white sm:text-5xl">
                   {item.title}
                 </h1>
               </div>
@@ -77,38 +77,42 @@ export default async function PortfolioDetailPage({
 
           {/* Meta */}
           <FadeIn delay={0.16}>
-            <div className="mt-10 grid gap-6 rounded-xl border border-border bg-card p-6 sm:grid-cols-4">
-              <div>
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Client
-                </p>
-                <p className="mt-1 font-medium">{item.client}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Industry
-                </p>
-                <p className="mt-1 font-medium">{item.industry}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Year
-                </p>
-                <p className="mt-1 font-medium">{item.year}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Services
-                </p>
-                <div className="mt-1.5 flex flex-wrap gap-1.5">
-                  {item.services.map((service) => (
-                    <span
-                      key={service}
-                      className="rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/90"
-                    >
-                      {service}
-                    </span>
-                  ))}
+            <div className="liquid-glass mt-10 rounded-3xl p-6">
+              <div className="relative z-10 grid gap-6 sm:grid-cols-4">
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-white/50">
+                    Харилцагч
+                  </p>
+                  <p className="mt-1 font-medium text-white">{item.client}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-white/50">
+                    Салбар
+                  </p>
+                  <p className="mt-1 font-medium text-white">
+                    {item.industry}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-white/50">
+                    Он
+                  </p>
+                  <p className="mt-1 font-medium text-white">{item.year}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-white/50">
+                    Үйлчилгээ
+                  </p>
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    {item.services.map((service) => (
+                      <span
+                        key={service}
+                        className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/80"
+                      >
+                        {service}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -120,20 +124,22 @@ export default async function PortfolioDetailPage({
       <section className="pb-16">
         <Container>
           <FadeIn>
-            <p className="max-w-3xl text-pretty text-xl leading-relaxed text-foreground/90">
+            <p className="max-w-3xl text-pretty text-xl leading-relaxed text-white/80">
               {item.summary}
             </p>
           </FadeIn>
           <Stagger className="mt-10 grid gap-6 sm:grid-cols-3">
             {item.metrics.map((metric) => (
               <StaggerItem key={metric.label}>
-                <div className="card-hover rounded-xl border border-border bg-card p-6 text-center">
-                  <p className="text-gradient text-3xl font-semibold tracking-tight">
-                    {metric.value}
-                  </p>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {metric.label}
-                  </p>
+                <div className="liquid-glass rounded-3xl p-6 text-center transition-transform hover:scale-105">
+                  <div className="relative z-10">
+                    <p className="text-3xl font-medium tracking-tight text-white">
+                      {metric.value}
+                    </p>
+                    <p className="mt-2 text-sm text-white/60">
+                      {metric.label}
+                    </p>
+                  </div>
                 </div>
               </StaggerItem>
             ))}
@@ -142,70 +148,74 @@ export default async function PortfolioDetailPage({
       </section>
 
       {/* Narrative */}
-      <section className="border-t border-border py-16">
+      <section className="pb-16">
         <Container>
-          <div className="mx-auto grid max-w-4xl gap-12">
-            <FadeIn>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                The challenge
-              </h2>
-              <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                {item.client} came to us with a familiar gap: a business
-                performing well offline and a website working against it. The
-                existing site didn’t reflect the caliber of the work, buried
-                the actions visitors came to take, and gave the team no way to
-                evolve it without a developer in the loop. In a category like{" "}
-                {item.industry.toLowerCase()}, that gap costs real revenue
-                every week it stays open.
-              </p>
-            </FadeIn>
-            <FadeIn>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                Our approach
-              </h2>
-              <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                We started with a discovery workshop to map who visits, what
-                they need to believe, and what a successful visit looks like.
-                From there the engagement covered{" "}
-                {item.services.join(", ").toLowerCase()} — sequencing every
-                page as an argument before touching the visual layer, then
-                building against strict performance budgets so the polish
-                never came at the cost of speed.
-              </p>
-            </FadeIn>
-            <FadeIn>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                The result
-              </h2>
-              <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-                The launch in {item.year} turned the website from a brochure
-                into a working part of the business. The numbers above tell
-                the short version:{" "}
-                {item.metrics
-                  .map((m) => `${m.label.toLowerCase()} at ${m.value}`)
-                  .join(", ")}
-                . The longer version is a site the {item.client} team now
-                updates themselves — and a foundation the next phase of their
-                growth can build on.
-              </p>
-            </FadeIn>
-          </div>
+          <FadeIn>
+            <div className="liquid-glass mx-auto max-w-4xl rounded-[2.5rem] p-8 sm:p-12">
+              <div className="relative z-10 grid gap-12">
+                <div>
+                  <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                    Тулгарсан сорилт
+                  </h2>
+                  <p className="mt-4 text-pretty leading-relaxed text-white/70">
+                    {item.client} бидэн дээр танил цоорхойтой ирсэн: оффлайн
+                    орчинд сайн ажилладаг бизнес, харин түүний эсрэг ажилладаг
+                    вэбсайт. Хуучин сайт нь ажлын жинхэнэ түвшинг илэрхийлж
+                    чадахгүй, зочдын хийхээр ирсэн үйлдлүүдийг нууж, багт
+                    хөгжүүлэгчгүйгээр өөрчлөлт хийх ямар ч боломж олгодоггүй
+                    байв. {item.industry} шиг өрсөлдөөнтэй салбарт энэ цоорхой
+                    нээлттэй байх долоо хоног бүр бодит орлогоор үнэлэгддэг.
+                  </p>
+                </div>
+                <div>
+                  <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                    Бидний арга барил
+                  </h2>
+                  <p className="mt-4 text-pretty leading-relaxed text-white/70">
+                    Бид хэн зочилдог, тэд юунд итгэх ёстой, амжилттай зочлолт
+                    ямар харагдахыг тодорхойлох судалгааны воркшопоос эхэлсэн.
+                    Тэндээс төсөл {item.services.join(", ")} чиглэлүүдийг
+                    хамарсан — визуал давхаргад хүрэхээс өмнө хуудас бүрийг
+                    үнэмшүүлэх дараалалд оруулж, дараа нь гоо сайхан нь хурдны
+                    зардал болохгүйн тулд хатуу хурдны төсвийн дагуу
+                    хөгжүүлсэн.
+                  </p>
+                </div>
+                <div>
+                  <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                    Үр дүн
+                  </h2>
+                  <p className="mt-4 text-pretty leading-relaxed text-white/70">
+                    {item.year} оны нээлт вэбсайтыг танилцуулга хуудаснаас
+                    бизнесийн ажилладаг хэсэг болгон хувиргасан. Дээрх тоонууд
+                    товч хувилбарыг өгүүлдэг:{" "}
+                    {item.metrics
+                      .map((m) => `${m.label} — ${m.value}`)
+                      .join(", ")}
+                    . Урт хувилбар нь {item.client} багийн одоо өөрсдөө
+                    шинэчилдэг сайт бөгөөд өсөлтийнх нь дараагийн үе шат
+                    түшиглэх суурь болсон явдал юм.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </section>
 
       {/* Prev / next */}
-      <section className="border-t border-border py-16">
+      <section className="pb-24">
         <Container>
           <div className="grid gap-6 sm:grid-cols-2">
             <FadeIn>
               <Link
                 href={`/portfolio/${prev.slug}`}
-                className="card-hover group flex h-full flex-col justify-between rounded-xl border border-border bg-card p-6"
+                className="liquid-glass group flex h-full flex-col justify-between rounded-3xl p-6 transition-transform hover:scale-105"
               >
-                <span className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
-                  <ArrowLeft className="size-3.5" /> Previous case study
+                <span className="relative z-10 flex items-center gap-2 text-xs uppercase tracking-wide text-white/50">
+                  <ArrowLeft className="size-3.5" /> Өмнөх кейс
                 </span>
-                <span className="mt-3 font-semibold group-hover:text-indigo-300">
+                <span className="relative z-10 mt-3 font-medium text-white">
                   {prev.title}
                 </span>
               </Link>
@@ -213,12 +223,12 @@ export default async function PortfolioDetailPage({
             <FadeIn delay={0.08}>
               <Link
                 href={`/portfolio/${next.slug}`}
-                className="card-hover group flex h-full flex-col justify-between rounded-xl border border-border bg-card p-6 text-right"
+                className="liquid-glass group flex h-full flex-col justify-between rounded-3xl p-6 text-right transition-transform hover:scale-105"
               >
-                <span className="flex items-center justify-end gap-2 text-xs uppercase tracking-wide text-muted-foreground">
-                  Next case study <ArrowRight className="size-3.5" />
+                <span className="relative z-10 flex items-center justify-end gap-2 text-xs uppercase tracking-wide text-white/50">
+                  Дараагийн кейс <ArrowRight className="size-3.5" />
                 </span>
-                <span className="mt-3 font-semibold group-hover:text-indigo-300">
+                <span className="relative z-10 mt-3 font-medium text-white">
                   {next.title}
                 </span>
               </Link>

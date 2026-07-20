@@ -8,9 +8,9 @@ import { AmbientGlow } from "@/components/shared/motion";
 import { getTemplateById } from "@/data/templates";
 
 export const metadata: Metadata = {
-  title: "Start a project",
+  title: "Төсөл эхлүүлэх",
   description:
-    "Tell us about your project and our studio will reply within one business day.",
+    "Төслийнхөө талаар бидэнд хэлээрэй — манай студи ажлын нэг өдрийн дотор хариу өгнө.",
 };
 
 export default async function OrderPage({
@@ -33,21 +33,21 @@ export default async function OrderPage({
           className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
-          Back to site
+          Сайт руу буцах
         </Link>
       </header>
 
       <main className="mx-auto w-full max-w-3xl px-6 pb-24 pt-8 sm:pt-12">
         <div className="mb-10 text-center">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-indigo-400">
-            Start a project
+            Төсөл эхлүүлэх
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Let’s build something <span className="text-gradient">remarkable</span>
+            Хамтдаа <span className="text-gradient">гайхалтай</span> зүйл бүтээцгээе
           </h1>
           <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
-            A few quick questions so our studio can scope your build. It takes
-            about two minutes.
+            Таны төслийн цар хүрээг тодорхойлоход туслах хэдхэн асуулт. Ердөө
+            хоёр минут орчим зарцуулагдана.
           </p>
         </div>
 

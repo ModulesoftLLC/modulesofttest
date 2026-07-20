@@ -41,14 +41,14 @@ import { getTemplateById } from "@/data/templates";
 import { formatCurrency } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Admin overview — MODULESOFT",
-  description: "Revenue, orders, and template performance at a glance.",
+  title: "Админ тойм — MODULESOFT",
+  description: "Орлого, захиалга, загварын гүйцэтгэлийг нэг дороос.",
 };
 
 const rangeOptions = [
-  { value: "30d", label: "Last 30 days" },
-  { value: "90d", label: "Last 90 days" },
-  { value: "year", label: "This year" },
+  { value: "30d", label: "Сүүлийн 30 хоног" },
+  { value: "90d", label: "Сүүлийн 90 хоног" },
+  { value: "year", label: "Энэ жил" },
 ];
 
 const kpis: {
@@ -59,28 +59,28 @@ const kpis: {
   tint: string;
 }[] = [
   {
-    label: "Total revenue",
+    label: "Нийт орлого",
     value: formatCurrency(analytics.totalRevenue),
     growth: analytics.revenueGrowth,
     icon: DollarSign,
     tint: "bg-indigo-500/15 text-indigo-400",
   },
   {
-    label: "Orders",
+    label: "Захиалгууд",
     value: analytics.totalOrders.toLocaleString("en-US"),
     growth: analytics.ordersGrowth,
     icon: Package,
     tint: "bg-violet-500/15 text-violet-400",
   },
   {
-    label: "Active users",
+    label: "Идэвхтэй хэрэглэгчид",
     value: analytics.activeUsers.toLocaleString("en-US"),
     growth: analytics.usersGrowth,
     icon: Users,
     tint: "bg-fuchsia-500/15 text-fuchsia-400",
   },
   {
-    label: "Conversion rate",
+    label: "Хөрвүүлэлтийн хувь",
     value: `${analytics.conversionRate}%`,
     growth: analytics.conversionGrowth,
     icon: Percent,
@@ -112,15 +112,15 @@ export default function AdminOverviewPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">
-            Admin overview
+            Админ тойм
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Here&rsquo;s how MODULESOFT is performing across revenue, orders,
-            and templates.
+            MODULESOFT-ийн орлого, захиалга, загварын гүйцэтгэлийн ерөнхий
+            дүр зураг.
           </p>
         </div>
         <Select items={rangeOptions} defaultValue="30d">
-          <SelectTrigger className="w-40 bg-card" aria-label="Date range">
+          <SelectTrigger className="w-40 bg-card" aria-label="Хугацааны интервал">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -152,7 +152,7 @@ export default function AdminOverviewPage() {
                   <span className="flex items-center gap-1 font-medium text-emerald-400">
                     <TrendingUp className="size-3.5" />+{kpi.growth}%
                   </span>
-                  <span className="text-muted-foreground">vs last period</span>
+                  <span className="text-muted-foreground">өмнөх үеэс</span>
                 </p>
               </div>
             </CardContent>
@@ -164,9 +164,9 @@ export default function AdminOverviewPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Revenue</CardTitle>
+            <CardTitle>Сарын орлого</CardTitle>
             <CardDescription>
-              Monthly revenue over the last twelve months.
+              Сүүлийн арван хоёр сарын орлогын үзүүлэлт.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -202,8 +202,8 @@ export default function AdminOverviewPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Top templates</CardTitle>
-            <CardDescription>Best sellers, all time.</CardDescription>
+            <CardTitle>Шилдэг загварууд</CardTitle>
+            <CardDescription>Бүх цаг үеийн хамгийн их борлуулалттай.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {analytics.topTemplates.map((entry, index) => {
@@ -223,7 +223,7 @@ export default function AdminOverviewPage() {
                       {template.name}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {entry.sales.toLocaleString("en-US")} sales
+                      {entry.sales.toLocaleString("en-US")} борлуулалт
                     </p>
                   </div>
                   <span className="shrink-0 text-sm font-medium tabular-nums text-indigo-400">
@@ -240,14 +240,14 @@ export default function AdminOverviewPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Recent orders</CardTitle>
-            <CardDescription>The five latest orders placed.</CardDescription>
+            <CardTitle>Сүүлийн захиалгууд</CardTitle>
+            <CardDescription>Хамгийн сүүлд ирсэн таван захиалга.</CardDescription>
             <CardAction>
               <Link
                 href="/admin/orders"
                 className="flex items-center gap-1 text-sm text-indigo-400 transition-colors hover:text-indigo-300"
               >
-                View all
+                Бүгдийг үзэх
                 <ArrowRight className="size-3.5" />
               </Link>
             </CardAction>
@@ -257,10 +257,10 @@ export default function AdminOverviewPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Order</TableHead>
-                    <TableHead>Customer</TableHead>
-                    <TableHead className="text-right">Total</TableHead>
-                    <TableHead className="text-right">Status</TableHead>
+                    <TableHead>Захиалга</TableHead>
+                    <TableHead>Харилцагч</TableHead>
+                    <TableHead className="text-right">Дүн</TableHead>
+                    <TableHead className="text-right">Төлөв</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -296,8 +296,8 @@ export default function AdminOverviewPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Traffic sources</CardTitle>
-            <CardDescription>Share of visits by channel.</CardDescription>
+            <CardTitle>Трафикийн эх үүсвэр</CardTitle>
+            <CardDescription>Зочилтын сувгуудын эзлэх хувь.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
             {analytics.trafficSources.map((source, index) => (

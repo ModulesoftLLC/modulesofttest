@@ -45,9 +45,9 @@ const viewportOptions: {
   label: string;
   icon: React.ComponentType<{ className?: string }>;
 }[] = [
-  { id: "desktop", label: "Desktop", icon: Monitor },
-  { id: "tablet", label: "Tablet", icon: Tablet },
-  { id: "mobile", label: "Mobile", icon: Smartphone },
+  { id: "desktop", label: "Компьютер", icon: Monitor },
+  { id: "tablet", label: "Таблет", icon: Tablet },
+  { id: "mobile", label: "Утас", icon: Smartphone },
 ];
 
 export function TopBar({
@@ -68,11 +68,11 @@ export function TopBar({
           <input
             value={siteName}
             onChange={(event) => onSiteNameChange(event.target.value)}
-            aria-label="Site name"
+            aria-label="Сайтын нэр"
             spellCheck={false}
             className="h-8 w-36 rounded-md bg-transparent px-2 text-sm font-medium outline-none transition-colors hover:bg-secondary/60 focus:bg-secondary/60 md:w-44"
           />
-          <Badge variant="secondary">Draft</Badge>
+          <Badge variant="secondary">Ноорог</Badge>
         </div>
 
         {/* Center: viewport switcher */}
@@ -110,22 +110,22 @@ export function TopBar({
           <Tooltip>
             <TooltipTrigger
               render={
-                <Button variant="ghost" size="icon-sm" disabled aria-label="Undo" />
+                <Button variant="ghost" size="icon-sm" disabled aria-label="Буцаах" />
               }
             >
               <Undo2 />
             </TooltipTrigger>
-            <TooltipContent>Undo</TooltipContent>
+            <TooltipContent>Буцаах</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger
               render={
-                <Button variant="ghost" size="icon-sm" disabled aria-label="Redo" />
+                <Button variant="ghost" size="icon-sm" disabled aria-label="Дахих" />
               }
             >
               <Redo2 />
             </TooltipTrigger>
-            <TooltipContent>Redo</TooltipContent>
+            <TooltipContent>Дахих</TooltipContent>
           </Tooltip>
 
           <div className="mx-1 h-5 w-px bg-border" />
@@ -136,7 +136,7 @@ export function TopBar({
             onClick={onTogglePreview}
           >
             {previewMode ? <EyeOff /> : <Eye />}
-            {previewMode ? "Exit preview" : "Preview"}
+            {previewMode ? "Засварлах горим" : "Урьдчилан үзэх"}
           </Button>
 
           <Dialog>
@@ -148,26 +148,26 @@ export function TopBar({
                 />
               }
             >
-              Publish
+              Нийтлэх
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Publishing requires a plan</DialogTitle>
+                <DialogTitle>Нийтлэхийн тулд багц шаардлагатай</DialogTitle>
                 <DialogDescription>
-                  “{siteName}” is ready to go live — publishing to a
-                  modulesoft.site domain is included with every paid plan. Your
-                  draft stays right here in the meantime.
+                  “{siteName}” нийтлэгдэхэд бэлэн боллоо — modulesoft.site
+                  домэйн дээр нийтлэх боломж бүх төлбөрт багцад багтсан. Таны
+                  ноорог энд хэвээрээ хадгалагдана.
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>
                 <Button variant="outline" render={<a href="/dashboard" />}>
-                  Go to dashboard
+                  Самбар руу
                 </Button>
                 <Button
                   className="border-transparent bg-gradient-to-r from-indigo-500 to-violet-500 text-white hover:from-indigo-400 hover:to-violet-400"
                   render={<a href="/pricing" />}
                 >
-                  View pricing
+                  Багц үзэх
                 </Button>
               </DialogFooter>
             </DialogContent>

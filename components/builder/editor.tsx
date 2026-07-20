@@ -54,7 +54,7 @@ export function Editor({ template }: { template: TemplateSeed | null }) {
   const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null);
   const [viewport, setViewport] = useState<Viewport>("desktop");
   const [previewMode, setPreviewMode] = useState(false);
-  const [siteName, setSiteName] = useState(template?.name ?? "Untitled Site");
+  const [siteName, setSiteName] = useState(template?.name ?? "Миний вэбсайт");
 
   const selectedSection =
     sections.find((section) => section.id === selectedSectionId) ?? null;
@@ -175,9 +175,10 @@ export function Editor({ template }: { template: TemplateSeed | null }) {
               <span className="flex size-12 items-center justify-center rounded-full bg-secondary">
                 <MousePointerClick className="size-5 text-indigo-400" />
               </span>
-              <p className="text-sm font-medium">Select a section to edit</p>
+              <p className="text-sm font-medium">Засварлах хэсгээ сонгоно уу</p>
               <p className="text-xs leading-relaxed text-muted-foreground">
-                Click any block on the canvas to tune its content and style.
+                Канвас дээрх дурын блок дээр дарж контент болон загварыг нь
+                тохируулаарай.
               </p>
             </aside>
           ))}

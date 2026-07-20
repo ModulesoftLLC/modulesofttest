@@ -21,17 +21,17 @@ const totalUnread = messageThreads.reduce(
 );
 
 const navItems: DashboardNavItem[] = [
-  { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-  { href: "/dashboard/projects", label: "Projects", icon: FolderKanban },
-  { href: "/dashboard/orders", label: "Orders", icon: Package },
-  { href: "/dashboard/templates", label: "Templates", icon: LayoutTemplate },
+  { href: "/dashboard", label: "Тойм", icon: LayoutDashboard },
+  { href: "/dashboard/projects", label: "Төслүүд", icon: FolderKanban },
+  { href: "/dashboard/orders", label: "Захиалгууд", icon: Package },
+  { href: "/dashboard/templates", label: "Загварууд", icon: LayoutTemplate },
   {
     href: "/dashboard/messages",
-    label: "Messages",
+    label: "Зурвасууд",
     icon: MessageSquare,
     badge: totalUnread,
   },
-  { href: "/dashboard/settings", label: "Settings", icon: Settings },
+  { href: "/dashboard/settings", label: "Тохиргоо", icon: Settings },
 ];
 
 export default function DashboardLayout({
@@ -43,9 +43,9 @@ export default function DashboardLayout({
     <DashboardShell
       items={navItems}
       basePath="/dashboard"
-      title="Client dashboard"
+      title="Хэрэглэгчийн самбар"
       userName={currentUser.name}
-      userDetail="Studio plan"
+      userDetail="Студи багц"
     >
       {children}
     </DashboardShell>

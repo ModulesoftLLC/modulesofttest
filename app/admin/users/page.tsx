@@ -61,10 +61,10 @@ import type { User, UserRole, UserStatus } from "@/types";
 type RoleFilter = UserRole | "all";
 
 const roleOptions: { value: RoleFilter; label: string }[] = [
-  { value: "all", label: "All roles" },
-  { value: "admin", label: "Admin" },
-  { value: "customer", label: "Customer" },
-  { value: "designer", label: "Designer" },
+  { value: "all", label: "Бүх эрх" },
+  { value: "admin", label: "Админ" },
+  { value: "customer", label: "Харилцагч" },
+  { value: "designer", label: "Дизайнер" },
 ];
 
 const roleBadge: Record<UserRole, string> = {
@@ -73,10 +73,16 @@ const roleBadge: Record<UserRole, string> = {
   customer: "bg-secondary text-muted-foreground",
 };
 
+const roleLabel: Record<UserRole, string> = {
+  admin: "Админ",
+  designer: "Дизайнер",
+  customer: "Харилцагч",
+};
+
 const statusMeta: Record<UserStatus, { label: string; dot: string }> = {
-  active: { label: "Active", dot: "bg-emerald-400" },
-  invited: { label: "Invited", dot: "bg-amber-400" },
-  suspended: { label: "Suspended", dot: "bg-zinc-500" },
+  active: { label: "Идэвхтэй", dot: "bg-emerald-400" },
+  invited: { label: "Уригдсан", dot: "bg-amber-400" },
+  suspended: { label: "Түдгэлзсэн", dot: "bg-zinc-500" },
 };
 
 export default function AdminUsersPage() {
@@ -115,25 +121,25 @@ export default function AdminUsersPage() {
 
   const stats = [
     {
-      label: "Total users",
+      label: "Нийт хэрэглэгч",
       value: userList.length.toString(),
       icon: UsersIcon,
       tint: "bg-indigo-500/15 text-indigo-400",
     },
     {
-      label: "Active",
+      label: "Идэвхтэй",
       value: userList.filter((u) => u.status === "active").length.toString(),
       icon: UserCheck,
       tint: "bg-emerald-500/15 text-emerald-400",
     },
     {
-      label: "Customers",
+      label: "Харилцагчид",
       value: userList.filter((u) => u.role === "customer").length.toString(),
       icon: ShieldCheck,
       tint: "bg-violet-500/15 text-violet-400",
     },
     {
-      label: "Team members",
+      label: "Багийн гишүүд",
       value: userList
         .filter((u) => u.role === "admin" || u.role === "designer")
         .length.toString(),
@@ -145,10 +151,10 @@ export default function AdminUsersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Users</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Хэрэглэгчид</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Everyone with a MODULESOFT account — customers, designers, and
-          admins.
+          MODULESOFT-ийн бүртгэлтэй бүх хүмүүс — харилцагч, дизайнер,
+          админууд.
         </p>
       </div>
 
@@ -180,9 +186,9 @@ export default function AdminUsersPage() {
           <Input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search by name or email…"
+            placeholder="Нэр, имэйлээр хайх…"
             className="bg-card pl-9"
-            aria-label="Search users"
+            aria-label="Хэрэглэгч хайх"
           />
         </div>
         <Select
@@ -192,7 +198,7 @@ export default function AdminUsersPage() {
         >
           <SelectTrigger
             className="h-9 w-full bg-card sm:w-44"
-            aria-label="Filter by role"
+            aria-label="Эрхээр шүүх"
           >
             <SelectValue />
           </SelectTrigger>
@@ -212,13 +218,13 @@ export default function AdminUsersPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="pl-4">User</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead>Plan</TableHead>
-                <TableHead className="text-right">Projects</TableHead>
-                <TableHead className="text-right">Total spent</TableHead>
-                <TableHead>Joined</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead className="pl-4">Хэрэглэгч</TableHead>
+                <TableHead>Эрх</TableHead>
+                <TableHead>Багц</TableHead>
+                <TableHead className="text-right">Төслүүд</TableHead>
+                <TableHead className="text-right">Зарцуулалт</TableHead>
+                <TableHead>Бүртгүүлсэн</TableHead>
+                <TableHead>Төлөв</TableHead>
                 <TableHead className="w-12 pr-4" />
               </TableRow>
             </TableHeader>
@@ -226,10 +232,10 @@ export default function AdminUsersPage() {
               {filtered.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={8} className="py-14 text-center">
-                    <p className="font-medium">No users found</p>
+                    <p className="font-medium">Хэрэглэгч олдсонгүй</p>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      No users match &ldquo;{search}&rdquo; with the current
-                      filters.
+                      Одоогийн шүүлтүүрээр &ldquo;{search}&rdquo; гэсэн
+                      хайлтад тохирох хэрэглэгч алга.
                     </p>
                   </TableCell>
                 </TableRow>
@@ -256,7 +262,7 @@ export default function AdminUsersPage() {
                         variant="secondary"
                         className={`${roleBadge[user.role]} capitalize`}
                       >
-                        {user.role}
+                        {roleLabel[user.role]}
                       </Badge>
                     </TableCell>
                     <TableCell>
@@ -288,7 +294,7 @@ export default function AdminUsersPage() {
                             <Button
                               variant="ghost"
                               size="icon-sm"
-                              aria-label={`Actions for ${user.name}`}
+                              aria-label={`${user.name} хэрэглэгчийн үйлдлүүд`}
                             />
                           }
                         >
@@ -299,21 +305,21 @@ export default function AdminUsersPage() {
                             onClick={() => setProfileUser(user)}
                           >
                             <Eye />
-                            View profile
+                            Профайл үзэх
                           </DropdownMenuItem>
                           {user.status === "suspended" ? (
                             <DropdownMenuItem
                               onClick={() => setStatus(user.id, "active")}
                             >
                               <RotateCcw />
-                              Reactivate
+                              Идэвхжүүлэх
                             </DropdownMenuItem>
                           ) : (
                             <DropdownMenuItem
                               onClick={() => setStatus(user.id, "suspended")}
                             >
                               <Ban />
-                              Suspend
+                              Түдгэлзүүлэх
                             </DropdownMenuItem>
                           )}
                           <DropdownMenuSeparator />
@@ -322,7 +328,7 @@ export default function AdminUsersPage() {
                             onClick={() => setDeleteTarget(user)}
                           >
                             <Trash2 />
-                            Delete
+                            Устгах
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -363,10 +369,10 @@ export default function AdminUsersPage() {
                   variant="secondary"
                   className={`${roleBadge[profileUser.role]} capitalize`}
                 >
-                  {profileUser.role}
+                  {roleLabel[profileUser.role]}
                 </Badge>
                 <Badge variant="outline" className="capitalize">
-                  {profileUser.plan} plan
+                  {profileUser.plan} багц
                 </Badge>
                 <span className="ml-1 flex items-center gap-1.5 text-xs text-muted-foreground">
                   <span
@@ -378,25 +384,25 @@ export default function AdminUsersPage() {
               <Separator />
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div>
-                  <p className="text-xs text-muted-foreground">Projects</p>
+                  <p className="text-xs text-muted-foreground">Төслүүд</p>
                   <p className="mt-0.5 font-medium tabular-nums">
                     {profileUser.projects}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Total spent</p>
+                  <p className="text-xs text-muted-foreground">Зарцуулалт</p>
                   <p className="mt-0.5 font-medium tabular-nums">
                     {formatCurrency(profileUser.totalSpent)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Joined</p>
+                  <p className="text-xs text-muted-foreground">Бүртгүүлсэн</p>
                   <p className="mt-0.5 font-medium">
                     {formatDate(profileUser.joinedAt)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Last active</p>
+                  <p className="text-xs text-muted-foreground">Сүүлд идэвхтэй байсан</p>
                   <p className="mt-0.5 font-medium">
                     {formatRelativeTime(profileUser.lastActive)}
                   </p>
@@ -407,14 +413,14 @@ export default function AdminUsersPage() {
                   <Button
                     onClick={() => setStatus(profileUser.id, "active")}
                   >
-                    Reactivate
+                    Идэвхжүүлэх
                   </Button>
                 ) : (
                   <Button
                     variant="destructive"
                     onClick={() => setStatus(profileUser.id, "suspended")}
                   >
-                    Suspend
+                    Түдгэлзүүлэх
                   </Button>
                 )}
               </DialogFooter>
@@ -432,18 +438,18 @@ export default function AdminUsersPage() {
       >
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
-            <DialogTitle>Delete user?</DialogTitle>
+            <DialogTitle>Энэ хэрэглэгчийг устгах уу?</DialogTitle>
             <DialogDescription>
-              {deleteTarget?.name}&rsquo;s account and access will be removed.
-              This mock action only updates the local list.
+              {deleteTarget?.name}-ийн бүртгэл болон хандах эрх устгагдана.
+              Энэ туршилтын үйлдэл зөвхөн локал жагсаалтыг шинэчилнэ.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setDeleteTarget(null)}>
-              Cancel
+              Цуцлах
             </Button>
             <Button variant="destructive" onClick={handleDelete}>
-              Delete user
+              Устгах
             </Button>
           </DialogFooter>
         </DialogContent>

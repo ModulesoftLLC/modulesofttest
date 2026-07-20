@@ -47,10 +47,10 @@ const categoryIcons: Record<string, LucideIcon> = {
 type SortKey = "popular" | "newest" | "price-asc" | "rating";
 
 const sortOptions: { value: SortKey; label: string }[] = [
-  { value: "popular", label: "Popular" },
-  { value: "newest", label: "Newest" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "rating", label: "Rating" },
+  { value: "popular", label: "Эрэлттэй" },
+  { value: "newest", label: "Шинэ" },
+  { value: "price-asc", label: "Үнэ: Багаас их" },
+  { value: "rating", label: "Үнэлгээ" },
 ];
 
 export function TemplateBrowser() {
@@ -102,13 +102,13 @@ export function TemplateBrowser() {
       {/* Search + sort */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <div className="relative flex-1">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-white/40" />
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search templates, tags, industries…"
-            className="h-11 rounded-lg bg-card pl-10"
-            aria-label="Search templates"
+            placeholder="Загвар хайх…"
+            className="h-11 rounded-full border-transparent bg-white/5 pl-10 text-white placeholder:text-white/40 focus-visible:border-white/20 focus-visible:ring-white/10 dark:bg-white/5"
+            aria-label="Загвар хайх"
           />
         </div>
         <Select
@@ -119,8 +119,8 @@ export function TemplateBrowser() {
           }}
         >
           <SelectTrigger
-            className="h-11 w-full rounded-lg bg-card sm:w-52"
-            aria-label="Sort templates"
+            className="h-11 w-full rounded-full border-transparent bg-white/5 px-4 text-white/80 hover:text-white focus-visible:border-white/20 focus-visible:ring-white/10 sm:w-52 dark:bg-white/5 dark:hover:bg-white/10"
+            aria-label="Загвар эрэмбэлэх"
           >
             <SelectValue />
           </SelectTrigger>
@@ -138,7 +138,7 @@ export function TemplateBrowser() {
       <div className="mt-5 flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <CategoryPill
           icon={LayoutGrid}
-          label="All"
+          label="Бүгд"
           active={category === "all"}
           onClick={() => setCategory("all")}
         />
@@ -158,19 +158,19 @@ export function TemplateBrowser() {
 
       {/* Results meta */}
       <div className="mt-6 flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-white/50">
           {results.length === templates.length
-            ? `${templates.length} templates`
-            : `${results.length} of ${templates.length} templates`}
+            ? `${templates.length} загвар олдлоо`
+            : `${templates.length} загвараас ${results.length} олдлоо`}
         </p>
         {hasActiveFilters && (
           <button
             type="button"
             onClick={resetFilters}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-indigo-500/40 hover:text-foreground"
+            className="liquid-glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium text-white/60 transition-colors hover:text-white"
           >
             <X className="size-3.5" />
-            Clear filters
+            Шүүлтүүр цэвэрлэх
           </button>
         )}
       </div>
@@ -200,22 +200,24 @@ export function TemplateBrowser() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card/50 px-6 py-24 text-center"
+          className="liquid-glass mt-6 flex flex-col items-center justify-center rounded-3xl px-6 py-24 text-center"
         >
-          <div className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500/20 to-violet-500/20">
-            <SearchX className="size-6 text-indigo-400" />
+          <div className="flex size-14 items-center justify-center rounded-full bg-white/10">
+            <SearchX className="size-6 text-white/70" />
           </div>
-          <h3 className="mt-5 text-lg font-semibold">No templates found</h3>
-          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-            Nothing matches your search. Try a different keyword, or reset the
-            filters to browse the full collection.
+          <h3 className="mt-5 text-lg font-semibold text-white">
+            Загвар олдсонгүй
+          </h3>
+          <p className="mt-2 max-w-sm text-sm text-white/60">
+            Таны хайлтад тохирох загвар алга. Өөр түлхүүр үг ашиглах эсвэл
+            шүүлтүүрээ цэвэрлээд бүх цуглуулгыг үзээрэй.
           </p>
           <button
             type="button"
             onClick={resetFilters}
-            className="mt-6 inline-flex h-10 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-5 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition-colors hover:from-indigo-400 hover:to-violet-400"
+            className="mt-6 inline-flex h-10 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-black transition-transform hover:scale-105 active:scale-95"
           >
-            Reset filters
+            Шүүлтүүр цэвэрлэх
           </button>
         </motion.div>
       )}
@@ -240,10 +242,10 @@ function CategoryPill({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all",
+        "inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all",
         active
-          ? "border-transparent bg-gradient-to-r from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/25"
-          : "border-border bg-card text-muted-foreground hover:border-indigo-500/40 hover:text-foreground"
+          ? "bg-white text-black shadow-lg shadow-black/20"
+          : "liquid-glass text-white/60 hover:text-white"
       )}
     >
       <Icon className="size-4" />

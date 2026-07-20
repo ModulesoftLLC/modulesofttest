@@ -116,7 +116,7 @@ export function DashboardShell({
           className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent/60 hover:text-foreground"
         >
           <ExternalLink className="size-4" />
-          Back to website
+          Вэбсайт руу буцах
         </Link>
         <div className="mt-2 flex items-center gap-3 rounded-lg bg-sidebar-accent/50 px-3 py-2.5">
           <Avatar className="size-8">
@@ -146,10 +146,10 @@ export function DashboardShell({
               className="lg:hidden"
               render={
                 <Button
-                  variant="ghost"
-                  size="icon"
-                  aria-label="Open navigation"
-                >
+                variant="ghost"
+                size="icon"
+                aria-label="Навигаци нээх"
+              >
                   <Menu className="size-5" />
                 </Button>
               }
@@ -165,7 +165,7 @@ export function DashboardShell({
           <div className="relative hidden max-w-sm flex-1 sm:block">
             <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
-              placeholder="Search…"
+              placeholder="Хайх…"
               className="h-9 border-border bg-secondary/50 pl-9"
             />
           </div>
@@ -175,7 +175,7 @@ export function DashboardShell({
               variant="ghost"
               size="icon"
               className="relative"
-              aria-label="Notifications"
+              aria-label="Мэдэгдлүүд"
             >
               <Bell className="size-4" />
               <span className="absolute right-2 top-2 size-2 rounded-full bg-indigo-500" />

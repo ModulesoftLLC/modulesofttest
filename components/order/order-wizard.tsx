@@ -48,22 +48,22 @@ const typeIcons: Record<string, LucideIcon> = {
   Wand2,
 };
 
-const STEPS = ["Website type", "Budget", "Project details", "Contact"] as const;
+const STEPS = ["Вэбсайтын төрөл", "Төсөв", "Төслийн дэлгэрэнгүй", "Холбоо барих"] as const;
 
 const PAGE_PRESETS = [
-  "Home",
-  "About",
-  "Services",
-  "Pricing",
-  "Blog",
-  "Contact",
-  "Shop",
-  "Booking",
-  "FAQ",
-  "Team",
+  "Нүүр",
+  "Тухай",
+  "Үйлчилгээ",
+  "Үнэ",
+  "Блог",
+  "Холбоо барих",
+  "Дэлгүүр",
+  "Захиалга",
+  "Асуулт хариулт",
+  "Баг",
 ] as const;
 
-const TIMELINES = ["ASAP", "Within 1 month", "1–3 months", "Flexible"] as const;
+const TIMELINES = ["Яаралтай", "1 сарын дотор", "1–3 сар", "Уян хатан"] as const;
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -161,20 +161,20 @@ export function OrderWizard({
           <Check className="size-10 text-white" strokeWidth={2.5} />
         </div>
         <h2 className="mt-8 text-2xl font-semibold tracking-tight">
-          Request received
+          Хүсэлт хүлээн авлаа
         </h2>
         <Badge variant="secondary" className="mt-4 font-mono text-indigo-400">
           {orderNumber}
         </Badge>
         <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-          Our studio will reply within one business day.
+          Манай студи ажлын нэг өдрийн дотор хариу өгнө.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button size="lg" className={gradientButton} render={<Link href="/dashboard" />}>
-            Go to dashboard
+            Самбар руу очих
           </Button>
           <Button size="lg" variant="ghost" render={<Link href="/" />}>
-            Back to home
+            Нүүр хуудас руу буцах
           </Button>
         </div>
       </motion.div>
@@ -276,7 +276,7 @@ export function OrderWizard({
           className={cn(step === 0 && "invisible")}
         >
           <ArrowLeft data-icon="inline-start" />
-          Back
+          Буцах
         </Button>
 
         {step < STEPS.length - 1 ? (
@@ -286,7 +286,7 @@ export function OrderWizard({
             disabled={!stepValid}
             onClick={() => goTo(step + 1)}
           >
-            Continue
+            Үргэлжлүүлэх
             <ArrowRight data-icon="inline-end" />
           </Button>
         ) : (
@@ -301,7 +301,7 @@ export function OrderWizard({
             ) : (
               <Send data-icon="inline-start" />
             )}
-            {submitting ? "Submitting…" : "Submit request"}
+            {submitting ? "Илгээж байна…" : "Хүсэлт илгээх"}
           </Button>
         )}
       </div>
@@ -321,8 +321,8 @@ function StepWebsiteType({
   return (
     <div>
       <StepHeading
-        title="What are we building?"
-        subtitle="Pick the closest match — we’ll refine the details together."
+        title="Бид юу бүтээх вэ?"
+        subtitle="Хамгийн ойр тохирохыг сонгоорой — дэлгэрэнгүйг хамтдаа нарийвчилна."
       />
       <div className="grid gap-3 sm:grid-cols-2">
         {(Object.keys(websiteTypeMeta) as WebsiteType[]).map((type) => {
@@ -381,15 +381,15 @@ function StepBudget({
   return (
     <div>
       <StepHeading
-        title="What’s your budget?"
-        subtitle="A range is enough — it helps us recommend the right approach."
+        title="Таны төсөв хэд вэ?"
+        subtitle="Ойролцоо хязгаар хангалттай — зөв хандлагыг санал болгоход бидэнд тусална."
       />
 
       {template && (
         <div className="mb-4 flex items-center gap-3 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-3">
           <LayoutTemplate className="size-4 shrink-0 text-indigo-400" />
           <p className="text-sm text-indigo-300">
-            Starting from template:{" "}
+            Суурь загвар:{" "}
             <span className="font-semibold text-foreground">{template.name}</span>
           </p>
         </div>
@@ -449,34 +449,34 @@ function StepDetails({
   return (
     <div>
       <StepHeading
-        title="Tell us about the project"
-        subtitle="The more context you share, the sharper our first proposal."
+        title="Төслийнхөө талаар бидэнд хэлээрэй"
+        subtitle="Та мэдээлэл дэлгэрэнгүй өгөх тусам бидний анхны санал оновчтой болно."
       />
       <div className="flex flex-col gap-6">
         <div className="grid gap-2">
-          <Label htmlFor="projectName">Project name</Label>
+          <Label htmlFor="projectName">Төслийн нэр</Label>
           <Input
             id="projectName"
             value={input.projectName}
             onChange={(e) => onField("projectName", e.target.value)}
-            placeholder="e.g. Harbor & Co. relaunch"
+            placeholder="ж.нь: Harbor & Co. шинэчлэл"
             className="h-10"
           />
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">Тайлбар</Label>
           <Textarea
             id="description"
             value={input.description}
             onChange={(e) => onField("description", e.target.value)}
-            placeholder="What are your goals? Who is the audience? Any sites you admire?"
+            placeholder="Таны зорилго юу вэ? Хэнд зориулагдсан бэ? Таалагддаг сайтууд байвал бичээрэй."
             className="min-h-28"
           />
         </div>
 
         <div className="grid gap-2">
-          <Label>Pages you’ll need</Label>
+          <Label>Шаардлагатай хуудсууд</Label>
           <div className="flex flex-wrap gap-2">
             {PAGE_PRESETS.map((page) => {
               const selected = input.pagesNeeded.includes(page);
@@ -502,7 +502,7 @@ function StepDetails({
         </div>
 
         <div className="grid gap-2">
-          <Label>Timeline</Label>
+          <Label>Хугацаа</Label>
           <Select
             value={input.timeline || null}
             onValueChange={(value) => {
@@ -510,7 +510,7 @@ function StepDetails({
             }}
           >
             <SelectTrigger className="h-10 w-full sm:w-64">
-              <SelectValue placeholder="When do you need it?" />
+              <SelectValue placeholder="Хэзээ хэрэгтэй вэ?" />
             </SelectTrigger>
             <SelectContent>
               {TIMELINES.map((t) => (
@@ -543,49 +543,49 @@ function StepContact({
   return (
     <div>
       <StepHeading
-        title="How do we reach you?"
-        subtitle="We’ll send the proposal and next steps to this address."
+        title="Бид тантай хэрхэн холбогдох вэ?"
+        subtitle="Санал болон дараагийн алхмуудыг энэ хаяг руу илгээнэ."
       />
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="grid gap-2">
-          <Label htmlFor="contactName">Name</Label>
+          <Label htmlFor="contactName">Нэр</Label>
           <Input
             id="contactName"
             value={input.contact.name}
             onChange={(e) => onContact("name", e.target.value)}
-            placeholder="Your full name"
+            placeholder="Таны бүтэн нэр"
             className="h-10"
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="contactEmail">Email</Label>
+          <Label htmlFor="contactEmail">Имэйл</Label>
           <Input
             id="contactEmail"
             type="email"
             value={input.contact.email}
             onChange={(e) => onContact("email", e.target.value)}
-            placeholder="you@company.com"
+            placeholder="tany@kompani.mn"
             className="h-10"
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="contactPhone">Phone (optional)</Label>
+          <Label htmlFor="contactPhone">Утас (заавал биш)</Label>
           <Input
             id="contactPhone"
             type="tel"
             value={input.contact.phone}
             onChange={(e) => onContact("phone", e.target.value)}
-            placeholder="+1 (555) 000-0000"
+            placeholder="+976 8800 0000"
             className="h-10"
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="contactCompany">Company (optional)</Label>
+          <Label htmlFor="contactCompany">Компани (заавал биш)</Label>
           <Input
             id="contactCompany"
             value={input.contact.company}
             onChange={(e) => onContact("company", e.target.value)}
-            placeholder="Company or studio name"
+            placeholder="Компани эсвэл студийн нэр"
             className="h-10"
           />
         </div>
@@ -594,25 +594,25 @@ function StepContact({
       <Card className="glass mt-6 border-none">
         <CardContent className="pt-5">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-indigo-400">
-            Review your request
+            Хүсэлтийн тойм
           </p>
           <Separator className="my-4" />
           <dl className="grid gap-3 text-sm">
-            <SummaryRow label="Website type" value={typeLabel} />
-            <SummaryRow label="Budget" value={budgetLabel} />
+            <SummaryRow label="Вэбсайтын төрөл" value={typeLabel} />
+            <SummaryRow label="Төсөв" value={budgetLabel} />
             <SummaryRow
-              label="Project name"
+              label="Төслийн нэр"
               value={input.projectName.trim() || "—"}
             />
             <SummaryRow
-              label="Pages"
+              label="Хуудсууд"
               value={
                 input.pagesNeeded.length > 0
-                  ? `${input.pagesNeeded.length} selected`
-                  : "Not specified"
+                  ? `${input.pagesNeeded.length} сонгосон`
+                  : "Тодорхойлоогүй"
               }
             />
-            <SummaryRow label="Timeline" value={input.timeline || "Flexible"} />
+            <SummaryRow label="Хугацаа" value={input.timeline || "Уян хатан"} />
           </dl>
         </CardContent>
       </Card>

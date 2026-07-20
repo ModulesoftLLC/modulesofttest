@@ -63,12 +63,12 @@ import type { Order, OrderStatus } from "@/types";
 type StatusFilter = OrderStatus | "all";
 
 const statusOptions: { value: StatusFilter; label: string }[] = [
-  { value: "all", label: "All statuses" },
-  { value: "pending", label: "Pending" },
-  { value: "confirmed", label: "Confirmed" },
-  { value: "in-production", label: "In Production" },
-  { value: "delivered", label: "Delivered" },
-  { value: "cancelled", label: "Cancelled" },
+  { value: "all", label: "Бүх төлөв" },
+  { value: "pending", label: orderStatusMeta.pending.label },
+  { value: "confirmed", label: orderStatusMeta.confirmed.label },
+  { value: "in-production", label: orderStatusMeta["in-production"].label },
+  { value: "delivered", label: orderStatusMeta.delivered.label },
+  { value: "cancelled", label: orderStatusMeta.cancelled.label },
 ];
 
 export default function AdminOrdersPage() {
@@ -101,7 +101,7 @@ export default function AdminOrdersPage() {
 
   const summary = [
     {
-      label: "Pending",
+      label: "Хүлээгдэж буй",
       value: orderList
         .filter((o) => o.status === "pending")
         .length.toString(),
@@ -109,7 +109,7 @@ export default function AdminOrdersPage() {
       tint: "bg-amber-500/15 text-amber-400",
     },
     {
-      label: "In production",
+      label: "Хийгдэж буй",
       value: orderList
         .filter((o) => o.status === "in-production")
         .length.toString(),
@@ -117,7 +117,7 @@ export default function AdminOrdersPage() {
       tint: "bg-violet-500/15 text-violet-400",
     },
     {
-      label: "Delivered",
+      label: "Хүлээлгэн өгсөн",
       value: orderList
         .filter((o) => o.status === "delivered")
         .length.toString(),
@@ -125,7 +125,7 @@ export default function AdminOrdersPage() {
       tint: "bg-emerald-500/15 text-emerald-400",
     },
     {
-      label: "Total value",
+      label: "Нийт дүн",
       value: formatCurrency(
         orderList
           .filter((o) => o.status !== "cancelled")
@@ -139,9 +139,10 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Orders</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Захиалгууд</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Review, confirm, and track every website order in one place.
+          Вэбсайтын бүх захиалгыг нэг дороос хянаж, баталгаажуулж, дагаж
+          мөрдөөрэй.
         </p>
       </div>
 
@@ -173,9 +174,9 @@ export default function AdminOrdersPage() {
           <Input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search by order number, customer, or company…"
+            placeholder="Захиалга, харилцагч хайх…"
             className="bg-card pl-9"
-            aria-label="Search orders"
+            aria-label="Захиалга хайх"
           />
         </div>
         <Select
@@ -185,7 +186,7 @@ export default function AdminOrdersPage() {
         >
           <SelectTrigger
             className="h-9 w-full bg-card sm:w-48"
-            aria-label="Filter by status"
+            aria-label="Төлвөөр шүүх"
           >
             <SelectValue />
           </SelectTrigger>
@@ -205,13 +206,13 @@ export default function AdminOrdersPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="pl-4">Order</TableHead>
-                <TableHead>Customer</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Budget</TableHead>
-                <TableHead className="text-right">Total</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead className="pl-4">Захиалга</TableHead>
+                <TableHead>Харилцагч</TableHead>
+                <TableHead>Төрөл</TableHead>
+                <TableHead>Төсөв</TableHead>
+                <TableHead className="text-right">Дүн</TableHead>
+                <TableHead>Огноо</TableHead>
+                <TableHead>Төлөв</TableHead>
                 <TableHead className="w-12 pr-4" />
               </TableRow>
             </TableHeader>
@@ -219,10 +220,11 @@ export default function AdminOrdersPage() {
               {filtered.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={8} className="py-14 text-center">
-                    <p className="font-medium">No orders found</p>
+                    <p className="font-medium">Захиалга олдсонгүй</p>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      No orders match &ldquo;{search}&rdquo; with the current
-                      filters. Try a different search or status.
+                      Одоогийн шүүлтүүрээр &ldquo;{search}&rdquo; гэсэн
+                      хайлтад тохирох захиалга алга. Өөр хайлт эсвэл төлөв
+                      сонгоод үзээрэй.
                     </p>
                   </TableCell>
                 </TableRow>
@@ -265,7 +267,7 @@ export default function AdminOrdersPage() {
                             <Button
                               variant="ghost"
                               size="icon-sm"
-                              aria-label={`Actions for ${order.orderNumber}`}
+                              aria-label={`${order.orderNumber} захиалгын үйлдлүүд`}
                             />
                           }
                         >
@@ -276,7 +278,7 @@ export default function AdminOrdersPage() {
                             onClick={() => setDetailOrder(order)}
                           >
                             <Eye />
-                            View details
+                            Дэлгэрэнгүй
                           </DropdownMenuItem>
                           {order.status === "pending" && (
                             <DropdownMenuItem
@@ -285,7 +287,7 @@ export default function AdminOrdersPage() {
                               }
                             >
                               <CheckCircle2 />
-                              Mark confirmed
+                              Баталгаажуулах
                             </DropdownMenuItem>
                           )}
                           {(order.status === "confirmed" ||
@@ -296,7 +298,7 @@ export default function AdminOrdersPage() {
                               }
                             >
                               <PackageCheck />
-                              Mark delivered
+                              Хүлээлгэн өгсөн болгох
                             </DropdownMenuItem>
                           )}
                           {order.status !== "cancelled" &&
@@ -310,7 +312,7 @@ export default function AdminOrdersPage() {
                                   }
                                 >
                                   <Ban />
-                                  Cancel order
+                                  Захиалга цуцлах
                                 </DropdownMenuItem>
                               </>
                             )}
@@ -348,14 +350,14 @@ export default function AdminOrdersPage() {
                   </Badge>
                 </DialogTitle>
                 <DialogDescription>
-                  Placed {formatDate(detailOrder.createdAt)} by{" "}
-                  {detailOrder.customer.name}.
+                  {formatDate(detailOrder.createdAt)}-нд{" "}
+                  {detailOrder.customer.name} захиалсан.
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-3 text-sm">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <p className="text-xs text-muted-foreground">Customer</p>
+                    <p className="text-xs text-muted-foreground">Харилцагч</p>
                     <p className="mt-0.5 font-medium">
                       {detailOrder.customer.name}
                     </p>
@@ -364,27 +366,27 @@ export default function AdminOrdersPage() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Company</p>
+                    <p className="text-xs text-muted-foreground">Байгууллага</p>
                     <p className="mt-0.5 font-medium">
                       {detailOrder.customer.company}
                     </p>
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">
-                      Website type
+                      Вэбсайтын төрөл
                     </p>
                     <p className="mt-0.5 font-medium">
                       {websiteTypeMeta[detailOrder.websiteType].label}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Budget</p>
+                    <p className="text-xs text-muted-foreground">Төсөв</p>
                     <p className="mt-0.5 font-medium">
                       {budgetMeta[detailOrder.budget].label}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Total</p>
+                    <p className="text-xs text-muted-foreground">Дүн</p>
                     <p className="mt-0.5 font-medium tabular-nums text-indigo-400">
                       {formatCurrency(detailOrder.total)}
                     </p>
@@ -392,7 +394,7 @@ export default function AdminOrdersPage() {
                 </div>
                 <Separator />
                 <div>
-                  <p className="text-xs text-muted-foreground">Notes</p>
+                  <p className="text-xs text-muted-foreground">Тэмдэглэл</p>
                   <p className="mt-1 text-muted-foreground">
                     &ldquo;{detailOrder.notes}&rdquo;
                   </p>
@@ -403,7 +405,7 @@ export default function AdminOrdersPage() {
                   <Button
                     onClick={() => updateStatus(detailOrder.id, "confirmed")}
                   >
-                    Mark confirmed
+                    Баталгаажуулах
                   </Button>
                 )}
                 {(detailOrder.status === "confirmed" ||
@@ -411,7 +413,7 @@ export default function AdminOrdersPage() {
                   <Button
                     onClick={() => updateStatus(detailOrder.id, "delivered")}
                   >
-                    Mark delivered
+                    Хүлээлгэн өгсөн болгох
                   </Button>
                 )}
               </DialogFooter>

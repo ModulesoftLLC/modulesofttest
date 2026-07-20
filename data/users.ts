@@ -3,7 +3,7 @@ import type { User } from "@/types";
 export const users: User[] = [
   {
     id: "usr-01",
-    name: "Sofia Lindqvist",
+    name: "С. Сарнай",
     email: "sofia@harborandco.com",
     role: "customer",
     status: "active",
@@ -15,7 +15,7 @@ export const users: User[] = [
   },
   {
     id: "usr-02",
-    name: "Daniel Okafor",
+    name: "Д. Тэмүүлэн",
     email: "daniel@neural.dev",
     role: "customer",
     status: "active",
@@ -27,7 +27,7 @@ export const users: User[] = [
   },
   {
     id: "usr-03",
-    name: "Maya Chen",
+    name: "М. Хулан",
     email: "maya@modulesoft.io",
     role: "designer",
     status: "active",
@@ -39,7 +39,7 @@ export const users: User[] = [
   },
   {
     id: "usr-04",
-    name: "Amelie Fournier",
+    name: "А. Номин",
     email: "amelie@emberhg.com",
     role: "customer",
     status: "active",
@@ -51,7 +51,7 @@ export const users: User[] = [
   },
   {
     id: "usr-05",
-    name: "Marcus Tan",
+    name: "Т. Билгүүн",
     email: "marcus@atlasapparel.shop",
     role: "customer",
     status: "active",
@@ -63,7 +63,7 @@ export const users: User[] = [
   },
   {
     id: "usr-06",
-    name: "Priya Nair",
+    name: "О. Энхжин",
     email: "priya@modulesoft.io",
     role: "designer",
     status: "active",
@@ -75,7 +75,7 @@ export const users: User[] = [
   },
   {
     id: "usr-07",
-    name: "Dr. Elena Vasquez",
+    name: "Д-р Э. Оюун",
     email: "elena@vitalhealth.io",
     role: "customer",
     status: "active",
@@ -87,7 +87,7 @@ export const users: User[] = [
   },
   {
     id: "usr-08",
-    name: "Jonas Weber",
+    name: "Б. Золжаргал",
     email: "jonas@modulesoft.io",
     role: "admin",
     status: "active",
@@ -99,7 +99,7 @@ export const users: User[] = [
   },
   {
     id: "usr-09",
-    name: "Yuki Tanaka",
+    name: "Ц. Мишээл",
     email: "yuki@sakura.rest",
     role: "customer",
     status: "suspended",
@@ -111,7 +111,7 @@ export const users: User[] = [
   },
   {
     id: "usr-10",
-    name: "Robert Achebe",
+    name: "А. Батбаяр",
     email: "robert@summitlodge.travel",
     role: "customer",
     status: "invited",

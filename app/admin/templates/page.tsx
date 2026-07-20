@@ -49,15 +49,15 @@ import { formatCurrency, formatDate } from "@/lib/format";
 import type { Template, TemplateCategory } from "@/types";
 
 const categoryOptions: { value: TemplateCategory; label: string }[] = [
-  { value: "business", label: "Business" },
-  { value: "restaurant", label: "Restaurant" },
-  { value: "hotel", label: "Hotel" },
-  { value: "school", label: "School" },
-  { value: "medical", label: "Medical" },
-  { value: "ecommerce", label: "E-commerce" },
-  { value: "portfolio", label: "Portfolio" },
-  { value: "ai-startup", label: "AI Startup" },
-  { value: "landing-page", label: "Landing Page" },
+  { value: "business", label: "Бизнес" },
+  { value: "restaurant", label: "Ресторан" },
+  { value: "hotel", label: "Зочид буудал" },
+  { value: "school", label: "Сургууль" },
+  { value: "medical", label: "Эмнэлэг" },
+  { value: "ecommerce", label: "Цахим худалдаа" },
+  { value: "portfolio", label: "Портфолио" },
+  { value: "ai-startup", label: "AI стартап" },
+  { value: "landing-page", label: "Ландинг хуудас" },
 ];
 
 export default function AdminTemplatesPage() {
@@ -79,11 +79,11 @@ export default function AdminTemplatesPage() {
   };
 
   const handleCreate = () => {
-    const name = draftName.trim() || "Untitled template";
+    const name = draftName.trim() || "Нэргүй загвар";
     setAddOpen(false);
     setDraftName("");
     setDraftPrice("79");
-    setNotice(`“${name}” was queued for review. (Mock — nothing was saved.)`);
+    setNotice(`Загвар амжилттай нэмэгдлээ — “${name}” хянагдахаар дараалалд орлоо. (Туршилтын горим — өгөгдөл хадгалагдаагүй.)`);
     window.setTimeout(() => setNotice(null), 4000);
   };
 
@@ -95,25 +95,25 @@ export default function AdminTemplatesPage() {
 
   const stats = [
     {
-      label: "Total templates",
+      label: "Нийт загвар",
       value: templateList.length.toLocaleString("en-US"),
       icon: LayoutTemplate,
       tint: "bg-indigo-500/15 text-indigo-400",
     },
     {
-      label: "Featured",
+      label: "Онцлох",
       value: templateList.filter((t) => t.isFeatured).length.toString(),
       icon: Star,
       tint: "bg-violet-500/15 text-violet-400",
     },
     {
-      label: "New",
+      label: "Шинэ",
       value: templateList.filter((t) => t.isNew).length.toString(),
       icon: Sparkles,
       tint: "bg-fuchsia-500/15 text-fuchsia-400",
     },
     {
-      label: "Total sales",
+      label: "Нийт борлуулалт",
       value: templateList
         .reduce((sum, t) => sum + t.sales, 0)
         .toLocaleString("en-US"),
@@ -127,10 +127,10 @@ export default function AdminTemplatesPage() {
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Templates</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Загварууд</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Manage the marketplace catalog — feature, edit, or retire
-            templates.
+            Маркетплэйсийн каталогийг удирдах — загварыг онцлох, засах,
+            хасах.
           </p>
         </div>
         <Dialog open={addOpen} onOpenChange={setAddOpen}>
@@ -140,28 +140,28 @@ export default function AdminTemplatesPage() {
             }
           >
             <Plus />
-            Add template
+            Загвар нэмэх
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>Add template</DialogTitle>
+              <DialogTitle>Загвар нэмэх</DialogTitle>
               <DialogDescription>
-                Create a new marketplace template. This is a mock form — no
-                data is persisted.
+                Маркетплэйст шинэ загвар үүсгэх. Энэ бол туршилтын маягт —
+                өгөгдөл хадгалагдахгүй.
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="template-name">Name</Label>
+                <Label htmlFor="template-name">Нэр</Label>
                 <Input
                   id="template-name"
                   value={draftName}
                   onChange={(event) => setDraftName(event.target.value)}
-                  placeholder="e.g. Meridian Studio"
+                  placeholder="ж. Meridian Studio"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="template-category">Category</Label>
+                <Label htmlFor="template-category">Ангилал</Label>
                 <Select
                   items={categoryOptions}
                   value={draftCategory}
@@ -172,7 +172,7 @@ export default function AdminTemplatesPage() {
                   <SelectTrigger
                     id="template-category"
                     className="w-full"
-                    aria-label="Template category"
+                    aria-label="Загварын ангилал"
                   >
                     <SelectValue />
                   </SelectTrigger>
@@ -186,7 +186,7 @@ export default function AdminTemplatesPage() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="template-price">Price (USD)</Label>
+                <Label htmlFor="template-price">Үнэ (USD)</Label>
                 <Input
                   id="template-price"
                   type="number"
@@ -198,9 +198,9 @@ export default function AdminTemplatesPage() {
             </div>
             <DialogFooter>
               <Button variant="outline" onClick={() => setAddOpen(false)}>
-                Cancel
+                Цуцлах
               </Button>
-              <Button onClick={handleCreate}>Create template</Button>
+              <Button onClick={handleCreate}>Нэмэх</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -251,14 +251,16 @@ export default function AdminTemplatesPage() {
                       variant="secondary"
                       className="bg-indigo-500/15 text-indigo-400 capitalize"
                     >
-                      {template.category.replace("-", " ")}
+                      {categoryOptions.find(
+                        (option) => option.value === template.category
+                      )?.label ?? template.category}
                     </Badge>
                     {template.isNew && (
                       <Badge
                         variant="secondary"
                         className="bg-fuchsia-500/15 text-fuchsia-400"
                       >
-                        New
+                        Шинэ
                       </Badge>
                     )}
                   </div>
@@ -270,14 +272,14 @@ export default function AdminTemplatesPage() {
               <div className="flex items-center gap-4 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <ShoppingCart className="size-3.5" />
-                  {template.sales.toLocaleString("en-US")} sales
+                  {template.sales.toLocaleString("en-US")} борлуулалт
                 </span>
                 <span className="flex items-center gap-1">
                   <Star className="size-3.5 fill-amber-400 text-amber-400" />
                   {template.rating}
                 </span>
                 <span className="ml-auto">
-                  Updated {formatDate(template.updatedAt)}
+                  Шинэчилсэн: {formatDate(template.updatedAt)}
                 </span>
               </div>
               <div className="flex items-center justify-between border-t border-border pt-3">
@@ -288,9 +290,9 @@ export default function AdminTemplatesPage() {
                     onCheckedChange={(checked) =>
                       toggleFeatured(template.id, checked)
                     }
-                    aria-label={`Feature ${template.name}`}
+                    aria-label={`${template.name} загварыг онцлох`}
                   />
-                  Featured
+                  Онцлох
                 </label>
                 <DropdownMenu>
                   <DropdownMenuTrigger
@@ -298,7 +300,7 @@ export default function AdminTemplatesPage() {
                       <Button
                         variant="ghost"
                         size="icon-sm"
-                        aria-label={`Actions for ${template.name}`}
+                        aria-label={`${template.name} загварын үйлдлүүд`}
                       />
                     }
                   >
@@ -307,13 +309,13 @@ export default function AdminTemplatesPage() {
                   <DropdownMenuContent align="end" className="w-40">
                     <DropdownMenuItem disabled>
                       <Pencil />
-                      Edit
+                      Засах
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       render={<Link href={`/templates/${template.slug}`} />}
                     >
                       <ExternalLink />
-                      View live
+                      Шууд үзэх
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
@@ -321,7 +323,7 @@ export default function AdminTemplatesPage() {
                       onClick={() => setDeleteTarget(template)}
                     >
                       <Trash2 />
-                      Delete
+                      Устгах
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -340,18 +342,19 @@ export default function AdminTemplatesPage() {
       >
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
-            <DialogTitle>Delete template?</DialogTitle>
+            <DialogTitle>Энэ загварыг устгах уу?</DialogTitle>
             <DialogDescription>
-              &ldquo;{deleteTarget?.name}&rdquo; will be removed from the
-              marketplace. This mock action only updates the local list.
+              &ldquo;{deleteTarget?.name}&rdquo; загвар маркетплэйсээс
+              хасагдана. Энэ туршилтын үйлдэл зөвхөн локал жагсаалтыг
+              шинэчилнэ.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setDeleteTarget(null)}>
-              Cancel
+              Цуцлах
             </Button>
             <Button variant="destructive" onClick={handleDelete}>
-              Delete template
+              Устгах
             </Button>
           </DialogFooter>
         </DialogContent>

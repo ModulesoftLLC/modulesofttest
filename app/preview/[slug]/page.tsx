@@ -14,10 +14,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const template = getTemplateBySlug(slug);
-  if (!template) return { title: "Preview — MODULESOFT" };
+  if (!template) return { title: "Урьдчилан үзэх — MODULESOFT" };
   return {
-    title: `${template.name} preview — MODULESOFT`,
-    description: `Live preview of the ${template.name} template.`,
+    title: `${template.name} — Урьдчилан үзэх — MODULESOFT`,
+    description: `${template.name} загварын шууд урьдчилан харагдац.`,
   };
 }
 

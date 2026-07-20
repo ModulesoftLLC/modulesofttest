@@ -74,9 +74,9 @@ export default function MessagesPage() {
           )}
         >
           <div className="border-b border-border px-4 py-4">
-            <h1 className="font-semibold">Messages</h1>
+            <h1 className="font-semibold">Зурвасууд</h1>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              Conversations with your design team
+              Дизайн багтайгаа харилцах яриа
             </p>
           </div>
           <div className="min-h-0 flex-1 overflow-y-auto p-2">
@@ -144,7 +144,7 @@ export default function MessagesPage() {
                   variant="ghost"
                   size="icon-sm"
                   className="md:hidden"
-                  aria-label="Back to conversations"
+                  aria-label="Буцах"
                   onClick={() => setMobileConversation(false)}
                 >
                   <ArrowLeft className="size-4" />
@@ -152,7 +152,7 @@ export default function MessagesPage() {
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium">{thread.subject}</p>
                   <p className="truncate text-xs text-muted-foreground">
-                    With {thread.participant}
+                    Харилцагч: {thread.participant}
                   </p>
                 </div>
                 {linkedProject && (
@@ -221,14 +221,14 @@ export default function MessagesPage() {
                       handleSend();
                     }
                   }}
-                  placeholder={`Reply to ${thread.participant}…`}
+                  placeholder="Зурвас бичих…"
                   className="max-h-32 min-h-10 flex-1 resize-none bg-secondary/50"
                   rows={1}
                 />
                 <Button
                   type="submit"
                   size="icon"
-                  aria-label="Send message"
+                  aria-label="Илгээх"
                   disabled={draft.trim().length === 0}
                   className="shrink-0 bg-gradient-to-r from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/25 hover:from-indigo-400 hover:to-violet-400"
                 >
@@ -238,7 +238,7 @@ export default function MessagesPage() {
             </>
           ) : (
             <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
-              Select a conversation to get started.
+              Эхлэхийн тулд харилцан яриа сонгоно уу.
             </div>
           )}
         </div>

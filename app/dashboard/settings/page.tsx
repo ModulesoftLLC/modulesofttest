@@ -31,40 +31,40 @@ import { formatDate, initials } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const planFeatures = [
-  "Unlimited projects",
-  "Dedicated design team",
-  "Priority support",
-  "Custom domains & SSL",
+  "Хязгааргүй төсөл",
+  "Тусгай дизайн баг",
+  "Тэргүүн ээлжийн дэмжлэг",
+  "Өөрийн домэйн ба SSL",
 ];
 
 const notificationRows = [
   {
     key: "projects",
-    label: "Project updates",
-    description: "Milestones, reviews and launch notices",
+    label: "Төслийн шинэчлэлт",
+    description: "Үе шат, хяналт болон нээлтийн мэдэгдлүүд",
     defaultOn: true,
   },
   {
     key: "messages",
-    label: "New messages",
-    description: "When your team replies to a thread",
+    label: "Шинэ зурвас",
+    description: "Танай баг харилцан ярианд хариулах үед",
     defaultOn: true,
   },
   {
     key: "billing",
-    label: "Billing",
-    description: "Invoices, receipts and payment reminders",
+    label: "Төлбөрийн мэдээлэл",
+    description: "Нэхэмжлэх, баримт болон төлбөрийн сануулга",
     defaultOn: true,
   },
   {
     key: "news",
-    label: "Product news",
-    description: "New templates and builder features",
+    label: "Бүтээгдэхүүний мэдээ",
+    description: "Шинэ загварууд болон бүтээгчийн шинэ боломжууд",
     defaultOn: false,
   },
 ];
 
-function SaveButton({ label = "Save changes" }: { label?: string }) {
+function SaveButton({ label = "Хадгалах" }: { label?: string }) {
   const [saved, setSaved] = useState(false);
 
   return (
@@ -82,7 +82,7 @@ function SaveButton({ label = "Save changes" }: { label?: string }) {
     >
       {saved ? (
         <>
-          <Check className="size-3.5" /> Saved
+          <Check className="size-3.5" /> Хадгаллаа
         </>
       ) : (
         label
@@ -105,18 +105,18 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Тохиргоо</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Your profile, workspace and plan — all in one place.
+          Таны профайл, ажлын орчин, багц — бүгд нэг дор.
         </p>
       </div>
 
       {/* Profile */}
       <Card>
         <CardHeader>
-          <CardTitle>Profile</CardTitle>
+          <CardTitle>Профайл</CardTitle>
           <CardDescription>
-            How you appear to your team and on invoices.
+            Та багтаа болон нэхэмжлэх дээр хэрхэн харагдах вэ.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
@@ -129,13 +129,13 @@ export default function SettingsPage() {
             <div>
               <p className="font-medium">{name}</p>
               <p className="text-sm text-muted-foreground">
-                Studio plan · member since {formatDate(currentUser.joinedAt)}
+                Студи багц · {formatDate(currentUser.joinedAt)}-с хойш гишүүн
               </p>
             </div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="settings-name">Full name</Label>
+              <Label htmlFor="settings-name">Бүтэн нэр</Label>
               <Input
                 id="settings-name"
                 value={name}
@@ -143,7 +143,7 @@ export default function SettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="settings-email">Email</Label>
+              <Label htmlFor="settings-email">Имэйл</Label>
               <Input
                 id="settings-email"
                 type="email"
@@ -152,7 +152,7 @@ export default function SettingsPage() {
               />
             </div>
             <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="settings-company">Company</Label>
+              <Label htmlFor="settings-company">Компани</Label>
               <Input
                 id="settings-company"
                 value={company}
@@ -169,14 +169,14 @@ export default function SettingsPage() {
       {/* Workspace */}
       <Card>
         <CardHeader>
-          <CardTitle>Workspace</CardTitle>
+          <CardTitle>Ажлын орчин</CardTitle>
           <CardDescription>
-            Naming and address for your published sites.
+            Нийтлэгдсэн сайтуудын нэр болон хаяг.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="settings-site-name">Site name</Label>
+            <Label htmlFor="settings-site-name">Сайтын нэр</Label>
             <Input
               id="settings-site-name"
               value={siteName}
@@ -184,7 +184,7 @@ export default function SettingsPage() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="settings-subdomain">Subdomain</Label>
+            <Label htmlFor="settings-subdomain">Дэд домэйн</Label>
             <div className="flex items-center">
               <Input
                 id="settings-subdomain"
@@ -206,9 +206,9 @@ export default function SettingsPage() {
       {/* Notifications */}
       <Card>
         <CardHeader>
-          <CardTitle>Notifications</CardTitle>
+          <CardTitle>Мэдэгдэл</CardTitle>
           <CardDescription>
-            Choose what lands in your inbox. We keep it light.
+            Танд юу ирэхийг сонгоорой. Бид хэт олон мэдэгдэл илгээхгүй.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-1">
@@ -230,7 +230,7 @@ export default function SettingsPage() {
                       [row.key]: checked,
                     }))
                   }
-                  aria-label={`Toggle ${row.label.toLowerCase()} notifications`}
+                  aria-label={`"${row.label}" мэдэгдлийг асаах/унтраах`}
                 />
               </div>
             </div>
@@ -241,9 +241,9 @@ export default function SettingsPage() {
       {/* Plan & billing */}
       <Card>
         <CardHeader>
-          <CardTitle>Plan &amp; billing</CardTitle>
+          <CardTitle>Багц ба төлбөр</CardTitle>
           <CardDescription>
-            Your subscription and upcoming invoice.
+            Таны захиалга болон дараагийн нэхэмжлэх.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -253,9 +253,9 @@ export default function SettingsPage() {
                 <Crown className="size-5" />
               </span>
               <div>
-                <p className="font-semibold">Studio — $99/mo</p>
+                <p className="font-semibold">Студи — $99/сар</p>
                 <p className="text-xs text-muted-foreground">
-                  Next invoice on {formatDate("2026-08-01")}
+                  Дараагийн нэхэмжлэх: {formatDate("2026-08-01")}
                 </p>
               </div>
             </div>
@@ -263,7 +263,7 @@ export default function SettingsPage() {
               href="/pricing"
               className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
-              Manage plan
+              Багц удирдах
             </Link>
           </div>
           <ul className="grid gap-2 sm:grid-cols-2">
@@ -283,25 +283,25 @@ export default function SettingsPage() {
       {/* Danger zone */}
       <Card className="border-destructive/40">
         <CardHeader>
-          <CardTitle className="text-destructive">Danger zone</CardTitle>
+          <CardTitle className="text-destructive">Аюултай бүс</CardTitle>
           <CardDescription>
-            Deleting your workspace removes every project, order and message.
-            This can&rsquo;t be undone.
+            Ажлын орчноо устгавал бүх төсөл, захиалга, зурвас устана.
+            Энэ үйлдлийг буцаах боломжгүй.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
             <DialogTrigger render={<Button variant="destructive" />}>
               <Trash2 className="size-4" />
-              Delete workspace
+              Ажлын орчин устгах
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Delete workspace?</DialogTitle>
+                <DialogTitle>Ажлын орчныг устгах уу?</DialogTitle>
                 <DialogDescription>
-                  This permanently deletes &ldquo;Harbor &amp; Co.&rdquo; along
-                  with all projects, orders and conversation history. There is
-                  no way back.
+                  Энэ үйлдэл &ldquo;Harbor &amp; Co.&rdquo;-г бүх төсөл,
+                  захиалга, харилцан ярианы түүхийн хамт бүрмөсөн устгана.
+                  Буцаах боломжгүй.
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>
@@ -309,13 +309,13 @@ export default function SettingsPage() {
                   variant="outline"
                   onClick={() => setDeleteOpen(false)}
                 >
-                  Cancel
+                  Цуцлах
                 </Button>
                 <Button
                   variant="destructive"
                   onClick={() => setDeleteOpen(false)}
                 >
-                  Yes, delete everything
+                  Тийм, бүгдийг устгах
                 </Button>
               </DialogFooter>
             </DialogContent>

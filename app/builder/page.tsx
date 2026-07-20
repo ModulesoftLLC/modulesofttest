@@ -2,9 +2,9 @@ import { getTemplateBySlug } from "@/data/templates";
 import { Editor, type TemplateSeed } from "@/components/builder/editor";
 
 export const metadata = {
-  title: "Builder",
+  title: "Вэбсайт бүтээгч",
   description:
-    "Design your website visually — arrange sections, tune styles, and preview across devices.",
+    "Вэбсайтаа нүдээр харж бүтээ — хэсгүүдээ эрэмбэлж, загвараа тохируулан, төхөөрөмж бүр дээр урьдчилан үзээрэй.",
 };
 
 export default async function BuilderPage({

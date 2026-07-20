@@ -16,11 +16,11 @@ import { orders } from "@/data/orders";
 const pendingOrders = orders.filter((order) => order.status === "pending").length;
 
 const navItems: DashboardNavItem[] = [
-  { href: "/admin", label: "Overview", icon: LayoutDashboard },
-  { href: "/admin/analytics", label: "Analytics", icon: LineChart },
-  { href: "/admin/orders", label: "Orders", icon: Package, badge: pendingOrders },
-  { href: "/admin/templates", label: "Templates", icon: LayoutTemplate },
-  { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin", label: "Тойм", icon: LayoutDashboard },
+  { href: "/admin/analytics", label: "Аналитик", icon: LineChart },
+  { href: "/admin/orders", label: "Захиалгууд", icon: Package, badge: pendingOrders },
+  { href: "/admin/templates", label: "Загварууд", icon: LayoutTemplate },
+  { href: "/admin/users", label: "Хэрэглэгчид", icon: Users },
 ];
 
 export default function AdminLayout({
@@ -32,9 +32,9 @@ export default function AdminLayout({
     <DashboardShell
       items={navItems}
       basePath="/admin"
-      title="Admin"
-      userName="Jonas Weber"
-      userDetail="Administrator"
+      title="Админ"
+      userName="Ж. Золбаяр"
+      userDetail="Администратор"
     >
       {children}
     </DashboardShell>

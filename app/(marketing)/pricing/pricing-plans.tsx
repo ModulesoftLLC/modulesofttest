@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Stagger, StaggerItem } from "@/components/shared/motion";
 import { formatCurrency } from "@/lib/format";
@@ -24,27 +23,27 @@ export function PricingPlans({ plans }: { plans: PricingPlan[] }) {
         <span
           className={cn(
             "text-sm font-medium",
-            yearly ? "text-muted-foreground" : "text-foreground"
+            yearly ? "text-white/50" : "text-white"
           )}
         >
-          Monthly
+          Сараар
         </span>
         <Switch
           checked={yearly}
           onCheckedChange={(checked) => setYearly(checked)}
-          aria-label="Toggle yearly billing"
+          aria-label="Жилийн төлбөрт шилжүүлэх"
         />
         <span
           className={cn(
             "text-sm font-medium",
-            yearly ? "text-foreground" : "text-muted-foreground"
+            yearly ? "text-white" : "text-white/50"
           )}
         >
-          Yearly
+          Жилээр
         </span>
-        <Badge className="border-0 bg-emerald-500/15 text-emerald-300">
-          2 months free
-        </Badge>
+        <span className="liquid-glass rounded-full px-3 py-1 text-xs text-white/80">
+          2 сар үнэгүй
+        </span>
       </div>
 
       <Stagger className="grid items-stretch gap-6 lg:grid-cols-3">
@@ -55,72 +54,77 @@ export function PricingPlans({ plans }: { plans: PricingPlan[] }) {
             <StaggerItem key={plan.id} className="h-full">
               <div
                 className={cn(
-                  "relative flex h-full flex-col rounded-2xl border bg-card p-8",
+                  "relative flex h-full flex-col rounded-3xl p-8 transition-transform hover:scale-105",
                   plan.highlighted
-                    ? "glow-primary border-indigo-400/40 lg:-my-4 lg:py-12"
-                    : "card-hover border-border"
+                    ? "liquid-glass-strong pt-14 lg:-my-4 lg:py-14"
+                    : "liquid-glass"
                 )}
               >
-                {plan.highlighted && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 border-0 bg-gradient-to-r from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/25">
-                    Most popular
-                  </Badge>
-                )}
-                <h3 className="text-lg font-semibold">{plan.name}</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {plan.description}
-                </p>
-                <div className="mt-6 flex items-baseline gap-1.5">
-                  <span className="text-4xl font-semibold tracking-tight">
-                    {formatCurrency(price)}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    /{yearly ? "year" : "month"}
-                  </span>
-                </div>
-                <p className="mt-1.5 h-5 text-xs text-emerald-300">
-                  {yearly && savings > 0
-                    ? `Save ${formatCurrency(savings)} a year`
-                    : " "}
-                </p>
-                <ul className="mt-6 flex-1 space-y-3">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2.5 text-sm text-foreground/90"
-                    >
-                      <Check className="mt-0.5 size-4 shrink-0 text-indigo-400" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={plan.monthlyPrice === 0 ? "/templates" : "/order"}
-                  className={cn(
-                    "mt-8 inline-flex h-11 items-center justify-center rounded-lg px-6 text-sm font-medium transition-colors",
-                    plan.highlighted
-                      ? "bg-gradient-to-r from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/25 hover:from-indigo-400 hover:to-violet-400"
-                      : "border border-border bg-secondary/40 text-foreground hover:bg-secondary"
+                <div className="relative z-10 flex flex-1 flex-col">
+                  {plan.highlighted && (
+                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-3 py-1 text-xs font-medium text-black">
+                      Хамгийн эрэлттэй
+                    </span>
                   )}
-                >
-                  {plan.cta}
-                </Link>
+                  <h3 className="text-lg font-medium text-white">
+                    {plan.name}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-white/60">
+                    {plan.description}
+                  </p>
+                  <div className="mt-6 flex items-baseline gap-1.5">
+                    <span className="text-4xl font-medium tracking-tight text-white">
+                      {formatCurrency(price)}
+                    </span>
+                    <span className="text-sm text-white/50">
+                      /{yearly ? "жил" : "сар"}
+                    </span>
+                  </div>
+                  <p className="mt-1.5 h-5 text-xs text-white/70">
+                    {yearly && savings > 0
+                      ? `Жилд ${formatCurrency(savings)} хэмнэнэ`
+                      : " "}
+                  </p>
+                  <ul className="mt-6 flex-1 space-y-3">
+                    {plan.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="flex items-start gap-2.5 text-sm text-white/80"
+                      >
+                        <Check className="mt-0.5 size-4 shrink-0 text-white/60" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={plan.monthlyPrice === 0 ? "/templates" : "/order"}
+                    className={cn(
+                      "mt-8 inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-medium transition-transform hover:scale-105 active:scale-95",
+                      plan.highlighted
+                        ? "bg-white text-black"
+                        : "bg-white/10 text-white"
+                    )}
+                  >
+                    {plan.cta}
+                  </Link>
+                </div>
               </div>
             </StaggerItem>
           );
         })}
       </Stagger>
 
-      <p className="mt-12 text-center text-sm text-muted-foreground">
-        All plans include SSL, global CDN hosting, and automatic backups.
-        Studio engagements and one-off builds are quoted separately — see{" "}
+      <p className="mt-12 text-center text-sm text-white/50">
+        Бүх багцад SSL, дэлхийн CDN байршуулалт, автомат нөөцлөлт багтсан.
+        Студийн төслүүд болон нэг удаагийн бүтээн байгуулалт тусад нь
+        үнэлэгддэг — эхлэх үнийг{" "}
         <Link
           href="/services"
-          className="text-indigo-400 underline-offset-4 hover:underline"
+          className="text-white underline-offset-4 hover:underline"
         >
-          services
+          үйлчилгээ
         </Link>{" "}
-        for starting prices.
+        хэсгээс хараарай.
       </p>
     </div>
   );
