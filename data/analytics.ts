@@ -1,0 +1,40 @@
+import type { AnalyticsSummary } from "@/types";
+
+export const analytics: AnalyticsSummary = {
+  totalRevenue: 284600,
+  revenueGrowth: 18.4,
+  totalOrders: 342,
+  ordersGrowth: 12.1,
+  activeUsers: 4820,
+  usersGrowth: 24.6,
+  conversionRate: 3.8,
+  conversionGrowth: 0.6,
+  revenueByMonth: [
+    { month: "Aug", revenue: 14200, orders: 21 },
+    { month: "Sep", revenue: 16800, orders: 24 },
+    { month: "Oct", revenue: 18900, orders: 27 },
+    { month: "Nov", revenue: 22400, orders: 31 },
+    { month: "Dec", revenue: 19600, orders: 26 },
+    { month: "Jan", revenue: 24100, orders: 33 },
+    { month: "Feb", revenue: 26800, orders: 35 },
+    { month: "Mar", revenue: 29400, orders: 38 },
+    { month: "Apr", revenue: 27200, orders: 34 },
+    { month: "May", revenue: 31500, orders: 41 },
+    { month: "Jun", revenue: 34800, orders: 44 },
+    { month: "Jul", revenue: 38900, orders: 48 },
+  ],
+  topTemplates: [
+    { templateId: "tpl-09", sales: 3120, revenue: 121680 },
+    { templateId: "tpl-06", sales: 2410, revenue: 238590 },
+    { templateId: "tpl-08", sales: 1980, revenue: 176220 },
+    { templateId: "tpl-01", sales: 1840, revenue: 145360 },
+    { templateId: "tpl-07", sales: 1620, revenue: 79380 },
+  ],
+  trafficSources: [
+    { source: "Organic search", share: 42 },
+    { source: "Direct", share: 26 },
+    { source: "Referrals", share: 14 },
+    { source: "Social", share: 11 },
+    { source: "Paid", share: 7 },
+  ],
+};
